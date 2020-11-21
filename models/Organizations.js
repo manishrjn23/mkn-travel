@@ -23,7 +23,11 @@ const OrganizationsSchema = new mongoose.Schema({
   maps:{
     type: String,
     required: true
-  }
+  },
+  ratings:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Ratings",
+  }]
 });
 
 const Organizations = mongoose.model("Organizations", OrganizationsSchema);

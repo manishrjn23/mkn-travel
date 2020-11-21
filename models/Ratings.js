@@ -20,9 +20,6 @@ const RatingsSchema = new mongoose.Schema({
   review: {
     type: String,
   },
-  overall_rating:{
-      required: true
-  }
 });
 
 const Ratings = mongoose.model("Ratings", RatingsSchema);

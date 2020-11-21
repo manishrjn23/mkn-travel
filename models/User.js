@@ -17,31 +17,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  wishlist: [
+  bookmarks: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Hotels",
-    },
-  ],
-  cart: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Hotels",
-    },
-  ],
-  hotel_bookings: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Hotels",
-    },{
-      type:Date,
-      
-    }
-  ],
-  flight_bookings: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Flights",
+      ref: "Organizations",
     },
   ],
 });
