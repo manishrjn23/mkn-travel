@@ -57,6 +57,7 @@ app.use((req, res, next) => {
 //routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users")); 
+app.use("/organizations", require("./routes/organizations")); 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, console.log(`Running on port ${PORT}`));
