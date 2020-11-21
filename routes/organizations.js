@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/',ensureAuthenticated,(req,res)=>{
     res.render('dashboard')
 })
-
+router.get('/')
 
 
 module.exports = router;

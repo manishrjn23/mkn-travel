@@ -108,7 +108,7 @@ router.post("/edit_profile", ensureAuthenticated, (req, res) => {
         console.log(err);
       } else {
         req.flash("success_message", "Information Updated Successfully");
-        res.redirect("/dashboard");
+        res.redirect("/organizations/dashboard");
       }
     }
   );
