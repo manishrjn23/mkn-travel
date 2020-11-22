@@ -9,6 +9,10 @@ const OrganizationsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  description:{
+    type:String,
+    required:true
+  },
   city: {
     type: String,
     required: true,
@@ -22,7 +26,6 @@ const OrganizationsSchema = new mongoose.Schema({
   }],
   maps:{
     type: String,
-    required: true
   },
   ratings:[{
     type: mongoose.Schema.Types.ObjectId,
