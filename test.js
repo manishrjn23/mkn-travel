@@ -1,10 +1,11 @@
-const mongoose=require('mongoose');
-const Organization=require('./models/Organizations');
+var Amadeus = require('amadeus');
+ 
+var amadeus = new Amadeus({
+  clientId: '9GgnCqcROkuyIsmSjW57hzq3wqvP0Ioh',
+  clientSecret: 'd6sAIOnw24CYJtnD'
+});
 
-name='Radisson Blu Hotel New Delhi Dwarka'
-field='hotel'
-city='Delhi'
-address='Sector 13, Dwarka'
-
-const newOrg=new Organization({name,field,city,address});
-newOrg.save();
+amadeus.referenceData.locations.pointsOfInterest.get({
+  latitude : 26.846695,
+  longitude : 80.946167
+}).then((points)=>console.log(points)).catch((err)=>console.log(err));

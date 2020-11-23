@@ -1,0 +1,379 @@
+$transluscent-white: rgba(255,255,255,0.25)
+$transluscent-black-25: rgba(0,0,0,0.25)
+$transluscent-black-50: rgba(0,0,0,0.50)
+
+$border-radius: 16px
+
+$box-shadow-passive: 0px 0px 8px 2px $transluscent-black-25
+$box-shadow-active: 0px 0px 16px 4px $transluscent-black-50
+
+$breakpoint-small-medium: 640px
+$breakpoint-medium-large: 1280px
+
+$icon-small: 24px
+$icon-medium: 32px
+$icon-large: 40px
+
+$gutter-small: 16px
+$gutter-medium: 24px
+$gutter-large: 32px
+
+body, header, div, img, main, section, article, h1, h2, h3, h4, h5, h6, p, button
+	padding: 0
+	margin: 0
+	box-sizing: border-box
+	user-select: none
+
+img 
+	display: block
+
+p
+	text-align: justify
+
+h1, h2, h3, h4, h5, h6, p, input, label, select, button, a
+	font-family: "Public Sans", sans-serif
+	color: black
+	line-height: 1
+
+a
+	text-decoration: none
+	color: black
+
+button
+	background: white
+
+input, select
+	outline: none
+
+body
+	width: 100%
+	height: 100%
+	padding: 0
+	margin: 0
+	background: white
+	scroll-behavior: contain
+
+header 
+	width: inherit
+	top: 0
+	position: sticky
+	display: flex
+	flex-flow: row nowrap
+	justify-content: space-between
+	background: $transluscent-white
+	backdrop-filter: blur(64px)
+	box-shadow: 0px 4px 16px 2px $transluscent-black-25
+	
+	div
+		display: block 
+		display: flex
+		flex-flow: row nowrap
+
+main
+	width: inherit
+	display: flex
+	flex-flow: column nowrap
+	align-items: center
+
+	section.organizations
+		width: inherit
+		display: grid
+		grid-auto-flow: row dense
+
+		a.organization
+			width: inherit
+			border-radius: $border-radius
+			box-shadow: $box-shadow-passive
+			transition: 250ms
+
+			&:hover, &:focus
+				box-shadow: $box-shadow-active
+				transition: 250ms
+
+			img
+				border-radius: $border-radius $border-radius 0 0
+				width: inherit
+
+			div
+				display: flex
+				flex-flow: row nowrap
+				justify-content: space-between
+				align-items: center
+
+	section.organization
+		width: inherit
+
+		div
+			display: flex
+			flex-flow: row nowrap
+			justify-content: space-between
+			align-items: center
+
+			a
+				border-radius: $border-radius
+				box-shadow: $box-shadow-passive
+				transition: 250ms
+
+				&:hover, &:focus
+					box-shadow: $box-shadow-active
+					transition: 250ms
+
+		img
+			width: inherit
+			border-radius: $border-radius
+			display: flex
+			flex-flow: column
+
+	section.ratings
+		width: inherit
+		display: grid
+		grid-auto-flow: row dense
+
+		article 
+			border-radius: $border-radius
+			box-shadow: $box-shadow-passive
+
+			div
+				width: inherit
+				display: flex
+				flex-flow: row nowrap
+				justify-content: space-between
+				align-items: center
+
+	section.rate
+		width: inherit
+		
+		form
+			width: inherit
+			display: flex
+			flex-flow: column nowrap
+			align-items: center
+
+			input, select, button
+				text-align: center
+				border-radius: $border-radius
+				border: 0
+				box-shadow: $box-shadow-passive
+				transition: 250ms
+
+				&:hover, &:focus
+					box-shadow: $box-shadow-active
+					transition: 250ms
+
+	section.search
+		width: inherit
+
+		form
+			width: inherit
+			display: flex
+			flex-flow: column nowrap
+			align-items: center
+
+			input, select, button
+				text-align: center
+				border-radius: $border-radius
+				border: 0
+				box-shadow: $box-shadow-passive
+				transition: 250ms
+
+				&:hover, &:focus
+					box-shadow: $box-shadow-active
+					transition: 250ms
+
+footer 
+	width: inherit
+	bottom: 0
+	position: sticky
+	display: flex
+	flex-flow: row nowrap
+	background: $transluscent-white
+	backdrop-filter: blur(64px)
+	box-shadow: 0px -4px 16px 2px $transluscent-black-25
+			
+@media (max-width: $breakpoint-small-medium)
+
+	h1, h2, h3, h4, h5, h6, p
+		padding: $gutter-small
+
+	h1
+		font-size: 32px
+
+	h2, a, input
+		font-size: 20px
+
+	h3, p, label, select, button
+		font-size: 16px
+
+	input, select, button
+		margin: $gutter-small / 2
+	
+	input, label, select, button
+		padding: $gutter-small / 2
+
+	header 
+		div
+			img
+				height: $icon-small
+				margin: $gutter-small
+
+	main 
+		
+		section.organizations
+			padding: $gutter-small
+			grid-template-columns: repeat(1, 1fr)
+			column-gap: $gutter-small
+			row-gap: $gutter-small
+
+		section.organization
+			padding: $gutter-small
+
+			div
+				a
+					padding: $gutter-small
+
+		section.ratings
+			padding: $gutter-small
+			grid-template-columns: repeat(1, 1fr)
+			column-gap: $gutter-small
+			row-gap: $gutter-small
+		
+		section.rate
+			padding: $gutter-small
+
+		section.search
+			padding: $gutter-small
+
+	footer 
+		justify-content: space-between
+
+		a
+			img
+				width: $icon-small
+				height: $icon-small
+				margin: $gutter-small
+
+@media (min-width: $breakpoint-small-medium + 1) and (max-width: $breakpoint-medium-large)
+
+	h1, h2, h3, h4, h5, h6, p
+		padding: $gutter-medium
+
+	h1
+		font-size: 48px
+
+	h2, a, input
+		font-size: 24px
+
+	h3, p, label, select, button
+		font-size: 20px
+
+	input, select, button
+		margin: $gutter-medium / 2
+	
+	input, label, select, button
+		padding: $gutter-medium / 2
+
+	header 
+		div
+			img
+				height: $icon-medium
+				margin: $gutter-medium
+
+	main 
+		
+		section.organizations
+			padding: $gutter-medium
+			grid-template-columns: repeat(2, 1fr)
+			column-gap: $gutter-medium
+			row-gap: $gutter-medium
+
+		section.organization
+			padding: $gutter-medium
+
+			div
+				a
+					padding: $gutter-medium
+
+		section.ratings
+			padding: $gutter-medium
+			grid-template-columns: repeat(2, 1fr)
+			column-gap: $gutter-medium
+			row-gap: $gutter-medium
+
+		section.rate
+			padding: $gutter-medium
+
+		section.search
+			padding: $gutter-medium
+
+				
+	footer 
+		justify-content: space-around
+
+		a
+			img
+				width: $icon-medium
+				height: $icon-medium
+				margin: $gutter-medium
+
+@media (min-width: $breakpoint-medium-large + 1)
+
+	h1, h2, h3, h4, h5, h6, p
+		padding: $gutter-large
+
+	h1
+		font-size: 80px
+
+	h2, a, input
+		font-size: 32px
+
+	h3, p, label, select, button
+		font-size: 24px
+
+	input, select, button
+		margin: $gutter-large / 2
+	
+	input, label, select, button
+		padding: $gutter-large / 2
+
+
+	header 
+		div
+			img
+				height: $icon-large
+				margin: $gutter-large
+
+	main 
+		
+		section.organizations
+			padding: $gutter-large	
+			grid-template-columns: repeat(3, 1fr)
+			column-gap: $gutter-large
+			row-gap: $gutter-large
+
+		section.organization
+			padding: $gutter-large
+
+			div
+				a
+					padding: $gutter-large
+
+		section.ratings
+			padding: $gutter-large
+			grid-template-columns: repeat(3, 1fr)
+			column-gap: $gutter-large
+			row-gap: $gutter-large
+
+		section.rate
+			padding: $gutter-large
+
+		section.search
+			padding: $gutter-large
+				
+	footer 
+		justify-content: center
+
+		a
+			img
+				width: $icon-large
+				height: $icon-large
+				margin: $gutter-large

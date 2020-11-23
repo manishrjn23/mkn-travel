@@ -93,7 +93,7 @@ router.get(
   function (req, res) {
     // Successful authentication, redirect home.
     req.flash("success_message", "Logged in Successfully");
-    res.redirect("/dashboard");
+    res.redirect("/");
   }
 );
 

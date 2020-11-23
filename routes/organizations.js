@@ -1,7 +1,7 @@
 const express = require("express");
 const { ensureAuthenticated } = require("../config/auth");
 const router = express.Router();
-const Organizations = require("../models/Organizations");
+
 const Ratings = require("../models/Ratings");
 const mongoose = require("mongoose");
 const { render } = require("ejs");
