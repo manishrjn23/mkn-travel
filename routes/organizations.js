@@ -1,7 +1,7 @@
 const express = require("express");
 const { ensureAuthenticated } = require("../config/auth");
 const router = express.Router();
-
+const Organizations=require('../models/Organizations')
 const Ratings = require("../models/Ratings");
 const mongoose = require("mongoose");
 const { render } = require("ejs");
@@ -9,34 +9,59 @@ const e = require("express");
 
 //item specific page
 
-router.get("/info/:id", ensureAuthenticated, (req, res) => {
+router.get("/info/:id", (req, res) => {
   id = mongoose.Types.ObjectId(req.params.id);
   Organizations.findById(id, function (err, org) {
     if (err) throw err;
     else {
-      res.render("org-page", { org });
+      res.render("organization", {user:req.user, organization:org });
     }
   });
 });
 
 //display all items
-router.get("/explore", ensureAuthenticated, (req, res) => {
+router.get("/search", (req, res) => {
   var sortCondition = {};
-  if (req.query.search) {
-    const regex = new RegExp(searchRegularExpression(req.query.search), "gi");
-    Organizations.find({ $or: [{ name: regex }, { description: regex }] })
+  if(req.query.sort==='descending_rating'){
+    sortCondition={overall_rating:-1};
+  }
+  if(req.query.sort==='ascending_rating'){
+    sortCondition={overall_rating:1};
+  }
+  if (req.query.search && req.query.city) {
+    const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
+    const regex2 = new RegExp(searchRegularExpression(req.query.city), "gi");
+    Organizations.find({ name:regex1,city:regex2,field:req.query.filter })
       .sort(sortCondition)
       .exec(function (err, orgs) {
         if (err) throw err;
         else {
-          res.render("explore", { user: req.user, orgs: orgs });
+          res.render("search", { user: req.user, organizations: orgs });
         }
       });
-  } else {
-    Organizations.find().exec(function (err, orgs) {
+  } else if(!req.query.search && req.query.city) {
+    const regex2 = new RegExp(searchRegularExpression(req.query.city), "gi");
+    Organizations.find({field: req.query.filter,city:regex2 }).exec(function (err, orgs) {
       if (err) throw err;
       else {
-        res.render("explore", { orgs });
+        res.render("search", { organizations: orgs,user:req.user });
+      }
+    });
+  }
+  else if(req.query.search && !req.query.city) {
+    const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
+    Organizations.find({field: req.query.filter,name:regex1 }).exec(function (err, orgs) {
+      if (err) throw err;
+      else {
+        res.render("search", { organizations: orgs,user:req.user });
+      }
+    });
+  }
+  else if(!req.query.city && !req.query.city){
+    Organizations.find({field: req.query.filter}).exec(function (err, orgs) {
+      if (err) throw err;
+      else {
+        res.render("search", { organizations: orgs,user:req.user });
       }
     });
   }
@@ -93,5 +118,6 @@ router.post("/info/:id", ensureAuthenticated, (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
 
 module.exports = router;

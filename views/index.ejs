@@ -1,55 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta http-equiv="Content-Type" content="text/css;charset=UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<title>MKN</title>
-		<meta name="author" content="" />
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<meta name="robots" content="" />
-		<link rel="stylesheet" href="/css/index.css">
-		<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@200&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<header>
-			<div>
-				<a href="#"><img src="https://via.placeholder.com/100x50?text=Logo" alt=""></a> <!-- /logo.png -->
-			</div>
-			<div>
-				<a href="search.html"><img src="/images/search.png" alt=""></a>
-				
-				<% if (user) { %>
-					<a href="/logout"><img src="/images/user.png" alt=""></a>
-				<% } else { %>
-					<a href="/login"><img src="/images/user.png" alt=""></a>
-				<% } %>
-				
-				<a href="bookings.html"><img src="/images/bookings.png" alt=""></a>
-			</div>
-		</header>
-		<main>
-			<h1>Welcome</h1>
-			<section class="organizations">
-				<% organizations.forEach(function(organization) { %>
-					<a class="organization" href="/organization/info/<%- organization.id%>">
-						<img src="https://cdn.pixabay.com/photo/2016/02/18/19/25/pc-1207886_1280.jpg" alt="">
-						<div>
-							<h2><%- organization.name%></h2>
-							<h3><%- organization.overall_ratings%></h3>
-						</div>
-					</a>
-				<% }) %>
-			</section>
-		</main>
-		<footer>
-			<a href="search.html"><img src="/images/hotel.png" alt=""></a> <!-- /search?filter=hotel -->
-			<a href="search.html"><img src="/images/restaurant.png" alt=""></a> <!-- /search?filter=restaurant -->
-			<a href="search.html"><img src="/images/shop.png" alt=""></a> <!-- /search?filter=shop -->
-			<a href="search.html"><img src="/images/performance.png" alt=""></a> <!-- /search?filter=performance -->
-		</footer>
-	</body>
-</html>
+<%- include('partials/header'); %>
+<main>
+  <h1>Welcome</h1>
+  <section class="organizations">
+    <% organizations.forEach(function(organization) { %>
+    <a class="organization" href="/organizations/info/<%- organization.id%>">
+      <img
+        src="<%-organization.images[0]%>"
+        alt=""
+      />
+      <div>
+        <h2><%- organization.name%></h2>
+        <h3><%- organization.overall_ratings%></h3>
+      </div>
+    </a>
+    <% }) %>
+  </section>
+</main>
+<%- include('partials/footer'); %>

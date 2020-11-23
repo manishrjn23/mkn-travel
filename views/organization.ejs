@@ -1,0 +1,44 @@
+<%- include('partials/header'); %>
+<main>
+  <h1>Explore</h1>
+  <section class="organization">
+    <div>
+      <h2><%- organization.name%></h2>
+      <a href="#">Book</a>
+    </div>
+    <div>
+      <h4><%- organization.city%></h4>
+      <h3><%- organization.overall_rating%></h3>
+    </div>
+    <img src="<%- organization.images[0]%>" alt="" />
+  </section>
+  <h1>Ratings</h1>
+
+  <section class="ratings">
+    <% organization.ratings.forEach(function(rating) { %>
+    <article>
+      <h2><%-rating.name%></h2>
+      <div>
+        <h3><%- rating.date%></h3>
+        <h4><%- rating.overall_rating%></h4>
+      </div>
+      <p><%- rating.description%></p>
+    </article>
+    <% }) %>
+  </section>
+  <h1>Rate</h1>
+  <section class="rate">
+    <form method="post" action="/organizations/info/<%-organization.id%>">
+      <select name="stars">
+        <option>★</option>
+        <option>★★</option>
+        <option>★★★</option>
+        <option>★★★★</option>
+        <option>★★★★★</option>
+      </select>
+      <input type="text" />
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+  <%- include('partials/footer'); %>
+</main>

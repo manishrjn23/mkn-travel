@@ -12,5 +12,12 @@ router.get('/',(req,res)=>{
     });
     
 })
-
+router.get('/test',(req,res)=>{
+    Organizations.find().exec(function (err, orgs) {
+      if (err) throw err;
+      else {
+        res.send('testing route');
+      }
+    });
+  })
 module.exports = router;

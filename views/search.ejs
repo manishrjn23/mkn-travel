@@ -1,0 +1,37 @@
+<%- include('partials/header'); %>
+<main>
+  <h1>Search</h1>
+  <section class="search">
+    <form method="get" action="/organizations/search">
+      <!-- /search?query=<>,filter=<>,sort=<> -->
+	  <input type="text" name='search' placeholder="Hotels, monuments, and more" autocomplete="off"/>
+	  <input type="text" name='city' placeholder="City" autocomplete="off"/>
+      <label for="filter">Filter</label>
+      <select name="filter">
+        <option value="hotel">Hotels</option>
+        <option value="monument">Monuments</option>
+        <option value="market">Shops</option>
+      </select>
+      <label for="sort">Sort</label>
+      <select name="sort">
+        <option value="descending_rating">Descending Rating</option>
+        <option value="ascending_rating">Ascending Rating</option>
+        <option value="descending_price">Descending Price</option>
+        <option value="ascending_price">Ascending Price</option>
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+  <section class="organizations">
+    <% organizations.forEach(function(organization) { %>
+    <a class="organization" href="/organizations/info/<%- organization.id%>">
+      <img src="<%- organization.images[0]%>" alt="" />
+      <div>
+        <h2><%- organization.name%> </h2><%-organization.city%>
+        <h3><%- organization.overall_ratings%></h3>
+      </div>
+    </a>
+    <% }) %>
+  </section>
+</main>
+<%- include('partials/footer'); %>

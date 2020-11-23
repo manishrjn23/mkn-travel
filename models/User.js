@@ -23,6 +23,9 @@ const UserSchema = new mongoose.Schema({
       ref: "Organizations",
     },
   ],
+  bookings:[
+    {},{},{}
+  ]
 });
 
 const User = mongoose.model("User", UserSchema);
