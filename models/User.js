@@ -17,15 +17,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  bookmarks: [
+  bookings: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Organizations",
+      org: { type: mongoose.Schema.Types.ObjectId, ref: "Organizations" },
+      check_in: { type: Date, required: true },
+      check_out: { type: Date, required: true },
     },
   ],
-  bookings:[
-    {},{},{}
-  ]
 });
 
 const User = mongoose.model("User", UserSchema);
