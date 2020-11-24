@@ -22,11 +22,14 @@ router.get("/info/:id", (req, res) => {
 //display all items
 router.get("/search", (req, res) => {
   var sortCondition = {};
-  if (req.query.sort === "descending_rating") {
-    sortCondition = { overall_rating: -1 };
+  if (req.query.sort === "overall_average_rating") {
+    sortCondition['overall_average_rating']=-1;
   }
-  if (req.query.sort === "ascending_rating") {
-    sortCondition = { overall_rating: 1 };
+  if (req.query.sort === "value_for_money") {
+    sortCondition['overall_value_rating']=- 1 ;
+  }
+  if (req.query.sort === "staff_service") {
+    sortCondition['overall_staff_rating']=- 1 ;
   }
   if (req.query.search && req.query.city) {
     const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
@@ -41,7 +44,7 @@ router.get("/search", (req, res) => {
       });
   } else if (!req.query.search && req.query.city) {
     const regex2 = new RegExp(searchRegularExpression(req.query.city), "gi");
-    Organizations.find({ field: req.query.filter, city: regex2 }).exec(
+    Organizations.find({ field: req.query.filter, city: regex2 }).sort(sortCondition).exec(
       function (err, orgs) {
         if (err) throw err;
         else {
@@ -51,7 +54,7 @@ router.get("/search", (req, res) => {
     );
   } else if (req.query.search && !req.query.city) {
     const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
-    Organizations.find({ field: req.query.filter, name: regex1 }).exec(
+    Organizations.find({ field: req.query.filter, name: regex1 }).sort(sortCondition).exec(
       function (err, orgs) {
         if (err) throw err;
         else {
@@ -60,7 +63,7 @@ router.get("/search", (req, res) => {
       }
     );
   } else if (!req.query.city && !req.query.city) {
-    Organizations.find({ field: req.query.filter }).exec(function (err, orgs) {
+    Organizations.find({ field: req.query.filter }).sort(sortCondition).exec(function (err, orgs) {
       if (err) throw err;
       else {
         res.render("search", { organizations: orgs, user: req.user });
