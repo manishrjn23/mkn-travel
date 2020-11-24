@@ -4,8 +4,13 @@
   <section class="search">
     <form method="get" action="/organizations/search">
       <!-- /search?query=<>,filter=<>,sort=<> -->
-	  <input type="text" name='search' placeholder="Hotels, monuments, and more" autocomplete="off"/>
-	  <input type="text" name='city' placeholder="City" autocomplete="off"/>
+      <input
+        type="text"
+        name="search"
+        placeholder="Hotels, monuments, and more"
+        autocomplete="off"
+      />
+      <input type="text" name="city" placeholder="City" autocomplete="off" />
       <label for="filter">Filter</label>
       <select name="filter">
         <option value="hotel">Hotels</option>
@@ -27,7 +32,8 @@
     <a class="organization" href="/organizations/info/<%- organization.id%>">
       <img src="<%- organization.images[0]%>" alt="" />
       <div>
-        <h2><%- organization.name%> </h2><%-organization.city%>
+        <h2><%- organization.name%></h2>
+        <%-organization.city%>
         <h3><%- organization.overall_ratings%></h3>
       </div>
     </a>

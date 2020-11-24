@@ -4,10 +4,7 @@
   <section class="organizations">
     <% organizations.forEach(function(organization) { %>
     <a class="organization" href="/organizations/info/<%- organization.id%>">
-      <img
-        src="<%-organization.images[0]%>"
-        alt=""
-      />
+      <img src="<%-organization.images[0]%>" alt="" />
       <div>
         <h2><%- organization.name%></h2>
         <h3><%- organization.overall_ratings%></h3>
