@@ -17,17 +17,20 @@ app.set("view engine", "ejs");
 //body parsing
 app.use(express.urlencoded({ extended: false }));
 
-
 //Setting up passport
-require('./config/passport')(passport);
-require('./config/google-auth')(passport);
+require("./config/passport")(passport);
+require("./config/google-auth")(passport);
 
 //Setting up database
 const db = require("./config/keys").MongoURI;
 
 //Connect database
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false })
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("Connected to database"))
   .catch((err) => console.log(err));
 
@@ -56,8 +59,8 @@ app.use((req, res, next) => {
 
 //routes
 app.use("/", require("./routes/index"));
-app.use("/users", require("./routes/users")); 
-app.use("/organizations", require("./routes/organizations")); 
+app.use("/users", require("./routes/users"));
+app.use("/organizations", require("./routes/organizations"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, console.log(`Running on port ${PORT}`));
