@@ -90,7 +90,9 @@ function searchRegularExpression(searchQuery) {
   return searchQuery.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
-
+router.post('/info/:id/book',ensureAuthenticated,(req,res)=>{
+  console.log(`post request received for ${req.params.id}`);
+})
 
 router.post("/info/:id", ensureAuthenticated, (req, res) => {
   const user = req.user;

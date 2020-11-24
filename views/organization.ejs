@@ -4,7 +4,7 @@
   <section class="organization">
     <div>
       <h2><%- organization.name%></h2>
-      <a href="#">Book</a>
+      <form action='/organizations/info/<%-organization.id%>/book ' method='POST'><input type='submit'>Book</form>
     </div>
     <div>
       <h4><%- organization.city%></h4>
