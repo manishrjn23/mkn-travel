@@ -9,6 +9,9 @@ const OrganizationsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  price:{
+    type:Number,
+  },
   description: {
     type: String,
     required: true,

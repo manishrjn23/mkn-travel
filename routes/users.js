@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { ensureAuthenticated } = require("../config/auth");
 const User = require("../models/User");
+const Organizations = require("../models/Organizations");
 
 router.get("/sign-up", (req, res) => {
   res.render("sign-up");
@@ -96,6 +97,15 @@ router.get(
     res.redirect("/");
   }
 );
+
+router.get('/bookings',ensureAuthenticated,(req,res)=>{
+  Organizations.find({ _id: { $in: req.user.cart }},(err,orgs)=>{
+    if(err)throw err;
+    else{
+      res.render('bookings',{organizations:orgs,user:req.user})
+    }
+  })
+})
 
 router.post("/edit_profile", ensureAuthenticated, (req, res) => {
   const { name, delivery_address, phone } = req.body;

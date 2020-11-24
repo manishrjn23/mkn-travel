@@ -90,6 +90,8 @@ function searchRegularExpression(searchQuery) {
   return searchQuery.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
+
+
 router.post("/info/:id", ensureAuthenticated, (req, res) => {
   const user = req.user;
   const organization = mongoose.Types.ObjectId(req.params.id);
