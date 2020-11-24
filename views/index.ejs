@@ -8,7 +8,9 @@
 			<div>
 				<h2><%- organization.name %></h2>
 				<h3><%- organization.city %></h3>
-				<h4><%- organization.overall_ratings %></h4>
+				<% if(organization.overall_average_rating){ %> 
+				<h4><%- organization.overall_average_rating %>★</h4>
+				<% } %> 
 			</div>
 		</a>
 		<% }) %>

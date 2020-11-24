@@ -35,12 +35,12 @@
 		<section class="ratings">
 			<% organization.ratings.forEach(function(rating) { %>
 			<article>
-				<h2><%- rating.name %></h2>
+				<h2><%- rating.user %></h2>
 				<div>
 					<h3><%- rating.date %></h3>
-					<h4><%- rating.overall_rating %></h4>
+					<h4><%- (rating.value_for_money+rating.staff_service)/2 %>★</h4>
 				</div>
-				<p><%- rating.description %></p>
+				<p><%- rating.review %></p>
 			</article>
 			<% }) %>
 		</section>
@@ -49,8 +49,16 @@
 	<section class="rate">
 		<form method="post" action="/organizations/info/<%-organization.id%>">
 			<div>
-				<label for="stars">Stars</label>
-				<select name="stars">
+				<label for="value_for_money">Value for money</label>
+				<select name="value_for_money" aria-placeholder="">
+					<option>★</option>
+					<option>★★</option>
+					<option>★★★</option>
+					<option>★★★★</option>
+					<option>★★★★★</option>
+				</select>
+				<label for="staff_service">Hospitality and staff service</label>
+				<select name="staff_service" aria-placeholder="">
 					<option>★</option>
 					<option>★★</option>
 					<option>★★★</option>

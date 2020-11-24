@@ -29,15 +29,23 @@ const OrganizationsSchema = new mongoose.Schema({
       type: String,
     },
   ],
-  maps: {
-    type: String,
-  },
   ratings: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Ratings",
+      type: Object
     },
   ],
+  overall_average_rating:{
+    type:Number,
+    default:0
+  },
+  overall_staff_rating:{
+    type:Number,
+    default:0
+  },
+  overall_value_rating:{
+    type:Number,
+    default:0
+  }
 });
 
 const Organizations = mongoose.model("Organizations", OrganizationsSchema);

@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const RatingsSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
+    required:true
   },
   organization: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,6 +20,10 @@ const RatingsSchema = new mongoose.Schema({
   review: {
     type: String,
   },
+  date:{
+    type:Date,
+    default:Date.now()
+  }
 });
 
 const Ratings = mongoose.model("Ratings", RatingsSchema);

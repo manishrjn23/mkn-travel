@@ -91,19 +91,19 @@ function searchRegularExpression(searchQuery) {
 }
 
 router.post('/info/:id/book',ensureAuthenticated,(req,res)=>{
-  const newBooking = new Booking({user:req.user,organization:req.params.id,date1:req.body.date1,if(date2) {date2:req.body.date2},people:req.body.people});
+  const newBooking = new Booking({user:req.user,organization:mongoose.Types.ObjectId(req.params.id),date1:req.body.date1,if(date2) {date2:req.body.date2},people:req.body.people});
   newBooking.save().then((booking)=>{
-    req.user.bookings.push(mongoose.Types.ObjectId(booking));
+    req.user.bookings.push(mongoose.Types.ObjectId(booking.id));
     req.user.save();
     res.redirect('/users/bookings');
   }).catch((err)=>console.log(err));
 })
 
 router.post("/info/:id", ensureAuthenticated, (req, res) => {
-  const user = req.user;
+  const user = req.user.name;
   const organization = mongoose.Types.ObjectId(req.params.id);
-  const value_for_money = req.body.value_for_money;
-  const staff_service = req.body.staff_service;
+  const value_for_money = req.body.value_for_money.length;
+  const staff_service = req.body.staff_service.length;
   const review = req.body.review;
   const newRating = new Ratings({
     user,
@@ -121,12 +121,33 @@ router.post("/info/:id", ensureAuthenticated, (req, res) => {
         } else {
           org.ratings.push(rating);
           org.save();
+          sum=0
+          sum_val=0
+          sum_staff=0
+          org.ratings.forEach(rating => {
+            sum+=(rating.staff_service+rating.value_for_money)/2;
+            sum_val=rating.value_for_money;
+            sum_staff=rating.staff_service;
+          });
+          org.overall_average_rating=sum/(org.ratings.length);
+          org.overall_staff_rating=sum_staff/(org.ratings.length);
+          org.overall_value_rating=sum_val/(org.ratings.length);
+          
+          org.save();
           req.flash("success_message", "Rated successfully");
-          res.redirect("/organizations/" + req.params.id);
+          res.redirect("/organizations/info/" + req.params.id);
         }
       });
     })
     .catch((err) => console.log(err));
 });
+
+
+// router.get('/test',(req,res)=>{
+//   Organizations.updateMany({},
+//     {overall_value_rating: 0}, 
+//       function(err, numberAffected){  
+//       });
+// })
 
 module.exports = router;

@@ -5,7 +5,7 @@ const passport = require("passport");
 const { ensureAuthenticated } = require("../config/auth");
 const User = require("../models/User");
 const Organizations = require("../models/Organizations");
-const Booking=require('../models/Booking');
+const Booking = require("../models/Booking");
 router.get("/sign-up", (req, res) => {
   res.render("sign-up");
 });
@@ -99,15 +99,21 @@ router.get(
   }
 );
 
-router.get('/bookings',ensureAuthenticated,(req,res)=>{
-  Booking.find({ _id: { $in: req.user.bookings }},(err,bookings)=>{
-    console.log(bookings);
-    // if(err)throw err;
-    // else{
-    //   res.render('bookings',{organizations:orgs,user:req.user})
-    // }
-  })
-})
+router.get("/bookings", ensureAuthenticated, (req, res) => {
+  console.log(req.user.bookings);
+  Booking.find({ _id: { $in: req.user.bookings } }, (err, bookings) => {
+    org_ids = [];
+    bookings
+      .forEach((booking) => {
+        org_ids.push(booking.organization);
+      })
+      console.log(org_ids)
+      Organizations.find({_id:{$in:org_ids}},(err,orgs)=>{
+        console.log(orgs.length)
+        res.render('bookings',{bookings,organizations:orgs,user:req.user})
+      })
+  });
+});
 
 router.post("/edit_profile", ensureAuthenticated, (req, res) => {
   const { name, delivery_address, phone } = req.body;
