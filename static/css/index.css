@@ -27,8 +27,11 @@ a {
 button {
   background: white;
 }
+button:hover {
+  cursor: pointer;
+}
 
-input, select {
+input, select, button {
   outline: none;
 }
 
@@ -91,6 +94,9 @@ main section.organizations a.organization div {
 }
 main section.organization {
   width: inherit;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
 }
 main section.organization div {
   display: flex;
@@ -98,20 +104,8 @@ main section.organization div {
   justify-content: space-between;
   align-items: center;
 }
-main section.organization div a {
-  border-radius: 16px;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
-  transition: 250ms;
-}
-main section.organization div a:hover, main section.organization div a:focus {
-  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
-  transition: 250ms;
-}
 main section.organization img {
-  width: inherit;
   border-radius: 16px;
-  display: flex;
-  flex-flow: column;
 }
 main section.ratings {
   width: inherit;
@@ -138,6 +132,12 @@ main section.rate form {
   flex-flow: column nowrap;
   align-items: center;
 }
+main section.rate form div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
 main section.rate form input, main section.rate form select, main section.rate form button {
   text-align: center;
   border-radius: 16px;
@@ -158,6 +158,12 @@ main section.search form {
   flex-flow: column nowrap;
   align-items: center;
 }
+main section.search form div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
 main section.search form input, main section.search form select, main section.search form button {
   text-align: center;
   border-radius: 16px;
@@ -166,6 +172,32 @@ main section.search form input, main section.search form select, main section.se
   transition: 250ms;
 }
 main section.search form input:hover, main section.search form input:focus, main section.search form select:hover, main section.search form select:focus, main section.search form button:hover, main section.search form button:focus {
+  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
+  transition: 250ms;
+}
+main section.book {
+  width: inherit;
+}
+main section.book form {
+  width: inherit;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+main section.book form div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+main section.book form input, main section.book form select, main section.book form button {
+  text-align: center;
+  border-radius: 16px;
+  border: 0;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
+  transition: 250ms;
+}
+main section.book form input:hover, main section.book form input:focus, main section.book form select:hover, main section.book form select:focus, main section.book form button:hover, main section.book form button:focus {
   box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
   transition: 250ms;
 }
@@ -187,15 +219,15 @@ footer {
   }
 
   h1 {
-    font-size: 32px;
+    font-size: 24px;
   }
 
   h2, a, input {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   h3, p, label, select, button {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   input, select, button {
@@ -220,8 +252,8 @@ footer {
   main section.organization {
     padding: 16px;
   }
-  main section.organization div a {
-    padding: 16px;
+  main section.organization div, main section.organization img {
+    width: 100%;
   }
   main section.ratings {
     padding: 16px;
@@ -232,7 +264,16 @@ footer {
   main section.rate {
     padding: 16px;
   }
+  main section.rate form div input {
+    width: 100%;
+  }
   main section.search {
+    padding: 16px;
+  }
+  main section.search form div input {
+    width: 100%;
+  }
+  main section.book {
     padding: 16px;
   }
 
@@ -251,15 +292,15 @@ footer {
   }
 
   h1 {
-    font-size: 48px;
+    font-size: 32px;
   }
 
   h2, a, input {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   h3, p, label, select, button {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   input, select, button {
@@ -284,8 +325,8 @@ footer {
   main section.organization {
     padding: 24px;
   }
-  main section.organization div a {
-    padding: 24px;
+  main section.organization div, main section.organization img {
+    width: 66.66%;
   }
   main section.ratings {
     padding: 24px;
@@ -296,7 +337,16 @@ footer {
   main section.rate {
     padding: 24px;
   }
+  main section.rate form div input {
+    width: 66.66%;
+  }
   main section.search {
+    padding: 24px;
+  }
+  main section.search form div input {
+    width: 66.66%;
+  }
+  main section.book {
     padding: 24px;
   }
 
@@ -315,15 +365,15 @@ footer {
   }
 
   h1 {
-    font-size: 80px;
+    font-size: 40px;
   }
 
   h2, a, input {
-    font-size: 32px;
+    font-size: 24px;
   }
 
   h3, p, label, select, button {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   input, select, button {
@@ -348,8 +398,8 @@ footer {
   main section.organization {
     padding: 32px;
   }
-  main section.organization div a {
-    padding: 32px;
+  main section.organization div, main section.organization img {
+    width: 25%;
   }
   main section.ratings {
     padding: 32px;
@@ -360,7 +410,16 @@ footer {
   main section.rate {
     padding: 32px;
   }
+  main section.rate form div input {
+    width: 33.33%;
+  }
   main section.search {
+    padding: 32px;
+  }
+  main section.search form div input {
+    width: 33.33%;
+  }
+  main section.book {
     padding: 32px;
   }
 

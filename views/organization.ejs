@@ -1,60 +1,66 @@
 <%- include('partials/header'); %>
 <main>
-  <h1>Explore</h1>
-  <section class="organization">
-    <div>
-      <h2><%- organization.name%></h2>
-      <section class="rate">
-        <form method="post" action="/organizations/info/<%-organization.id%>/book">
-          <% if(organization.field==='hotel'){ %> 
-          <label for="date1">Check in:</label>
-          <input type="date" id="date1" name="date1">
-          <label for="date2">Check out:</label>
-          <input type="date" id="date2" name="date2">
-          <%}%>
-          <% if(organization.field==='monument'){ %> 
-            <label for="date1">Visit Date:</label>
-          <input type="date" id="date1" name="date1">
-            <%}%>
-          <label for="people">Number of people:</label>
-          <input type="number" id="people" name="people">
-          <button type="submit">Book</button>
-        </form>
-      </section>
-    </div>
-    <div>
-      <h4><%- organization.city%></h4>
-      <h3><%- organization.overall_rating%></h3>
-    </div>
-    <img src="<%- organization.images[0]%>" alt="" />
-  </section>
-  <h1>Ratings</h1>
-
-  <section class="ratings">
-    <% organization.ratings.forEach(function(rating) { %>
-    <article>
-      <h2><%-rating.name%></h2>
-      <div>
-        <h3><%- rating.date%></h3>
-        <h4><%- rating.overall_rating%></h4>
-      </div>
-      <p><%- rating.description%></p>
-    </article>
-    <% }) %>
-  </section>
-  <h1>Rate</h1>
-  <section class="rate">
-    <form method="post" action="/organizations/info/<%-organization.id%>">
-      <select name="stars">
-        <option>★</option>
-        <option>★★</option>
-        <option>★★★</option>
-        <option>★★★★</option>
-        <option>★★★★★</option>
-      </select>
-      <input type="text" />
-      <button type="submit">Submit</button>
-    </form>
-  </section>
-  <%- include('partials/footer'); %>
+	<section class="organization">
+		<div>
+			<h2><%- organization.name%></h2>
+			<h3><%- organization.city%></h3>
+			<h4><%- organization.overall_rating%></h4>
+		</div>
+		<img src="<%- organization.images[0]%>" alt="" />
+	</section>
+	<h1>Book A Visit</h1>
+	<section class="book">
+		<form method="post" action="/organizations/info/<%-organization.id%>/book">
+			<div>
+				<% if (organization.field === 'hotel') { %>
+					<div>
+						<label for="date1">Check In Date</label>
+						<input type="date" id="date1" name="date1">
+						<label for="date2">Check Out Date</label>
+						<input type="date" id="date2" name="date2">
+					</div>
+				<% } %>
+				<% if (organization.field === 'monument') { %> 
+					<label for="date1">Visit Date</label>
+					<input type="date" id="date1" name="date1">
+				<% } %>
+				<label for="people">Visitors</label>
+				<input type="number" id="people" name="people">
+			</div>
+			<button type="submit">Book</button>
+		</form>
+	</section>
+	<% if (organization.ratings.length) { %>
+		<h1>Some Reviews</h1>
+		<section class="ratings">
+			<% organization.ratings.forEach(function(rating) { %>
+			<article>
+				<h2><%- rating.name %></h2>
+				<div>
+					<h3><%- rating.date %></h3>
+					<h4><%- rating.overall_rating %></h4>
+				</div>
+				<p><%- rating.description %></p>
+			</article>
+			<% }) %>
+		</section>
+	<% } %>
+	<h1>Leave A Review</h1>
+	<section class="rate">
+		<form method="post" action="/organizations/info/<%-organization.id%>">
+			<div>
+				<label for="stars">Stars</label>
+				<select name="stars">
+					<option>★</option>
+					<option>★★</option>
+					<option>★★★</option>
+					<option>★★★★</option>
+					<option>★★★★★</option>
+				</select>
+				<input type="text" name="review" placeholder="Review"/>
+			</div>
+			<button type="submit">Rate</button>
+		</form>
+	</section>
 </main>
+<%- include('partials/footer'); %>

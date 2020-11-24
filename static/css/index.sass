@@ -42,7 +42,10 @@ a
 button
 	background: white
 
-input, select
+	&:hover
+		cursor: pointer
+
+input, select, button
 	outline: none
 
 body
@@ -102,6 +105,9 @@ main
 
 	section.organization
 		width: inherit
+		display: flex
+		flex-flow: column wrap
+		align-items: center
 
 		div
 			display: flex
@@ -109,20 +115,8 @@ main
 			justify-content: space-between
 			align-items: center
 
-			a
-				border-radius: $border-radius
-				box-shadow: $box-shadow-passive
-				transition: 250ms
-
-				&:hover, &:focus
-					box-shadow: $box-shadow-active
-					transition: 250ms
-
 		img
-			width: inherit
 			border-radius: $border-radius
-			display: flex
-			flex-flow: column
 
 	section.ratings
 		width: inherit
@@ -149,6 +143,12 @@ main
 			flex-flow: column nowrap
 			align-items: center
 
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+				align-items: center
+
 			input, select, button
 				text-align: center
 				border-radius: $border-radius
@@ -169,6 +169,12 @@ main
 			flex-flow: column nowrap
 			align-items: center
 
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+				align-items: center
+
 			input, select, button
 				text-align: center
 				border-radius: $border-radius
@@ -179,6 +185,33 @@ main
 				&:hover, &:focus
 					box-shadow: $box-shadow-active
 					transition: 250ms
+
+	section.book
+		width: inherit
+
+		form
+			width: inherit
+			display: flex
+			flex-flow: column nowrap
+			align-items: center
+
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+				align-items: center
+
+			input, select, button
+				text-align: center
+				border-radius: $border-radius
+				border: 0
+				box-shadow: $box-shadow-passive
+				transition: 250ms
+
+				&:hover, &:focus
+					box-shadow: $box-shadow-active
+					transition: 250ms
+
 
 footer 
 	width: inherit
@@ -196,13 +229,13 @@ footer
 		padding: $gutter-small
 
 	h1
-		font-size: 32px
+		font-size: 24px
 
 	h2, a, input
-		font-size: 20px
+		font-size: 16px
 
 	h3, p, label, select, button
-		font-size: 16px
+		font-size: 12px
 
 	input, select, button
 		margin: $gutter-small / 2
@@ -227,9 +260,8 @@ footer
 		section.organization
 			padding: $gutter-small
 
-			div
-				a
-					padding: $gutter-small
+			div, img
+				width: 100%
 
 		section.ratings
 			padding: $gutter-small
@@ -240,7 +272,20 @@ footer
 		section.rate
 			padding: $gutter-small
 
+			form 
+				div
+					input 
+						width: 100%
+
 		section.search
+			padding: $gutter-small
+
+			form 
+				div
+					input 
+						width: 100%
+
+		section.book
 			padding: $gutter-small
 
 	footer 
@@ -258,13 +303,13 @@ footer
 		padding: $gutter-medium
 
 	h1
-		font-size: 48px
+		font-size: 32px
 
 	h2, a, input
-		font-size: 24px
+		font-size: 20px
 
 	h3, p, label, select, button
-		font-size: 20px
+		font-size: 16px
 
 	input, select, button
 		margin: $gutter-medium / 2
@@ -289,9 +334,8 @@ footer
 		section.organization
 			padding: $gutter-medium
 
-			div
-				a
-					padding: $gutter-medium
+			div, img
+				width: 66.66%
 
 		section.ratings
 			padding: $gutter-medium
@@ -302,7 +346,20 @@ footer
 		section.rate
 			padding: $gutter-medium
 
+			form 
+				div
+					input 
+						width: 66.66%
+
 		section.search
+			padding: $gutter-medium
+
+			form 
+				div
+					input 
+						width: 66.66%
+
+		section.book
 			padding: $gutter-medium
 
 				
@@ -321,13 +378,13 @@ footer
 		padding: $gutter-large
 
 	h1
-		font-size: 80px
+		font-size: 40px
 
 	h2, a, input
-		font-size: 32px
+		font-size: 24px
 
 	h3, p, label, select, button
-		font-size: 24px
+		font-size: 20px
 
 	input, select, button
 		margin: $gutter-large / 2
@@ -353,9 +410,8 @@ footer
 		section.organization
 			padding: $gutter-large
 
-			div
-				a
-					padding: $gutter-large
+			div, img
+				width: 25%
 
 		section.ratings
 			padding: $gutter-large
@@ -366,7 +422,20 @@ footer
 		section.rate
 			padding: $gutter-large
 
+			form 
+				div
+					input 
+						width: 33.33%
+
 		section.search
+			padding: $gutter-large
+
+			form 
+				div
+					input 
+						width: 33.33%
+
+		section.book
 			padding: $gutter-large
 				
 	footer 

@@ -92,7 +92,11 @@ function searchRegularExpression(searchQuery) {
 
 router.post('/info/:id/book',ensureAuthenticated,(req,res)=>{
   const newBooking = new Booking({user:req.user,organization:req.params.id,date1:req.body.date1,if(date2) {date2:req.body.date2},people:req.body.people});
-  console.log(newBooking);
+  newBooking.save().then((booking)=>{
+    req.user.bookings.push(mongoose.Types.ObjectId(booking));
+    req.user.save();
+    res.redirect('/users/bookings');
+  }).catch((err)=>console.log(err));
 })
 
 router.post("/info/:id", ensureAuthenticated, (req, res) => {
