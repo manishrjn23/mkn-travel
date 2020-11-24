@@ -1,19 +1,19 @@
 <%- include('partials/header'); %>
 <main>
-	<h1>Explore</h1>
-	<section class="organizations">
-		<% organizations.forEach(function(organization) { %>
-		<a class="organization" href="/organizations/info/<%- organization.id%>">
-			<img src="<%-organization.images[0]%>" alt="" />
-			<div>
-				<h2><%- organization.name %></h2>
-				<h3><%- organization.city %></h3>
-				<% if(organization.overall_average_rating){ %> 
-				<h4><%- organization.overall_average_rating %>★</h4>
-				<% } %> 
-			</div>
-		</a>
-		<% }) %>
-	</section>
+  <h1>Explore</h1>
+  <section class="organizations">
+    <% organizations.forEach(function(organization) { %>
+    <a class="organization" href="/organizations/info/<%- organization.id%>">
+      <img src="<%-organization.images[0]%>" alt="" />
+      <div>
+        <h2><%- organization.name %></h2>
+        <h3><%- organization.city %></h3>
+        <% if(organization.overall_average_rating){ %>
+        <h4><%- organization.overall_average_rating %>★</h4>
+        <% } %>
+      </div>
+    </a>
+    <% }) %>
+  </section>
 </main>
 <%- include('partials/footer'); %>

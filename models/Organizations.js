@@ -9,8 +9,8 @@ const OrganizationsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  price:{
-    type:Number,
+  price: {
+    type: Number,
   },
   description: {
     type: String,
@@ -31,21 +31,21 @@ const OrganizationsSchema = new mongoose.Schema({
   ],
   ratings: [
     {
-      type: Object
+      type: Object,
     },
   ],
-  overall_average_rating:{
-    type:Number,
-    default:0
+  overall_average_rating: {
+    type: Number,
+    default: 0,
   },
-  overall_staff_rating:{
-    type:Number,
-    default:0
+  overall_staff_rating: {
+    type: Number,
+    default: 0,
   },
-  overall_value_rating:{
-    type:Number,
-    default:0
-  }
+  overall_value_rating: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Organizations = mongoose.model("Organizations", OrganizationsSchema);

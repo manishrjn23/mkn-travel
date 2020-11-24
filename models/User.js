@@ -17,10 +17,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  bookings: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Booking",
-  }]
+  bookings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Booking",
+    },
+  ],
 });
 
 const User = mongoose.model("User", UserSchema);

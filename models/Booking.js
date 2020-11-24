@@ -9,20 +9,20 @@ const BookingSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Organizations",
   },
-  date1:{
-      type:Date,
-      required:true
+  date1: {
+    type: Date,
+    required: true,
   },
-  date2:{
-      type:Date
+  date2: {
+    type: Date,
   },
-  cost:{
-      type:Number,
+  cost: {
+    type: Number,
   },
-  people:{
-      type:Number,
-      required:true
-  }
+  people: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Booking = mongoose.model("Booking", BookingSchema);

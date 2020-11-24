@@ -103,15 +103,14 @@ router.get("/bookings", ensureAuthenticated, (req, res) => {
   console.log(req.user.bookings);
   Booking.find({ _id: { $in: req.user.bookings } }, (err, bookings) => {
     org_ids = [];
-    bookings
-      .forEach((booking) => {
-        org_ids.push(booking.organization);
-      })
-      console.log(org_ids)
-      Organizations.find({_id:{$in:org_ids}},(err,orgs)=>{
-        console.log(orgs.length)
-        res.render('bookings',{bookings,organizations:orgs,user:req.user})
-      })
+    bookings.forEach((booking) => {
+      org_ids.push(booking.organization);
+    });
+    console.log(org_ids);
+    Organizations.find({ _id: { $in: org_ids } }, (err, orgs) => {
+      console.log(orgs.length);
+      res.render("bookings", { bookings, organizations: orgs, user: req.user });
+    });
   });
 });
 

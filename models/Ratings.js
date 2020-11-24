@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const RatingsSchema = new mongoose.Schema({
   user: {
     type: String,
-    required:true
+    required: true,
   },
   organization: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,10 +20,10 @@ const RatingsSchema = new mongoose.Schema({
   review: {
     type: String,
   },
-  date:{
-    type:Date,
-    default:Date.now()
-  }
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const Ratings = mongoose.model("Ratings", RatingsSchema);
