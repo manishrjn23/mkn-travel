@@ -136,7 +136,6 @@ router.post("/info/:id", ensureAuthenticated, (req, res) => {
           throw err;
         } else {
           org.ratings.push(rating);
-          org.save();
           sum = 0;
           sum_val = 0;
           sum_staff = 0;
