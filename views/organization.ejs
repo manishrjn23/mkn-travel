@@ -4,7 +4,23 @@
   <section class="organization">
     <div>
       <h2><%- organization.name%></h2>
-      <form action='/organizations/info/<%-organization.id%>/book ' method='POST'><input type='submit'>Book</form>
+      <section class="rate">
+        <form method="post" action="/organizations/info/<%-organization.id%>/book">
+          <% if(organization.field==='hotel'){ %> 
+          <label for="date1">Check in:</label>
+          <input type="date" id="date1" name="date1">
+          <label for="date2">Check out:</label>
+          <input type="date" id="date2" name="date2">
+          <%}%>
+          <% if(organization.field==='monument'){ %> 
+            <label for="date1">Visit Date:</label>
+          <input type="date" id="date1" name="date1">
+            <%}%>
+          <label for="people">Number of people:</label>
+          <input type="number" id="people" name="people">
+          <button type="submit">Book</button>
+        </form>
+      </section>
     </div>
     <div>
       <h4><%- organization.city%></h4>

@@ -18,7 +18,6 @@ const BookingSchema = new mongoose.Schema({
   },
   cost:{
       type:Number,
-      required:true
   },
   people:{
       type:Number,
@@ -26,5 +25,5 @@ const BookingSchema = new mongoose.Schema({
   }
 });
 
-const Ratings = mongoose.model("Ratings", RatingsSchema);
-module.exports = Ratings;
+const Booking = mongoose.model("Booking", BookingSchema);
+module.exports = Booking;

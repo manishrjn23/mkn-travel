@@ -6,7 +6,7 @@ const Ratings = require("../models/Ratings");
 const mongoose = require("mongoose");
 const { render } = require("ejs");
 const e = require("express");
-
+const Booking=require('../models/Booking')
 //item specific page
 
 router.get("/info/:id", (req, res) => {
@@ -91,7 +91,8 @@ function searchRegularExpression(searchQuery) {
 }
 
 router.post('/info/:id/book',ensureAuthenticated,(req,res)=>{
-  console.log(`post request received for ${req.params.id}`);
+  const newBooking = new Booking({user:req.user,organization:req.params.id,date1:req.body.date1,if(date2) {date2:req.body.date2},people:req.body.people});
+  console.log(newBooking);
 })
 
 router.post("/info/:id", ensureAuthenticated, (req, res) => {

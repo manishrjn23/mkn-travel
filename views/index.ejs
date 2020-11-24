@@ -1,12 +1,13 @@
 <%- include('partials/header'); %>
 <main>
-  <h1>Welcome</h1>
+  <h1>Welcome to MKN Travel </h1>
   <section class="organizations">
     <% organizations.forEach(function(organization) { %>
     <a class="organization" href="/organizations/info/<%- organization.id%>">
       <img src="<%-organization.images[0]%>" alt="" />
       <div>
         <h2><%- organization.name%></h2>
+        <%-organization.city%>
         <h3><%- organization.overall_ratings%></h3>
       </div>
     </a>
