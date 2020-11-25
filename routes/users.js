@@ -7,11 +7,6 @@ const User = require("../models/User");
 const Organizations = require("../models/Organizations");
 const Booking = require("../models/Booking");
 
-//profile page
-router.get('/profile',(req,res)=>{
-  res.render('profile',{user:req.user});
-})
-
 //Sign up page
 router.get("/sign-up", (req, res) => {
   res.render("sign-up");
@@ -147,7 +142,7 @@ router.post("/edit_profile", ensureAuthenticated, (req, res) => {
         console.log(err);
       } else {
         req.flash("success_message", "Information Updated Successfully");
-        res.redirect("/");
+        res.redirect("/users/bookings");
       }
     }
   );
