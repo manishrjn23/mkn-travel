@@ -34,6 +34,11 @@ h1, h2, h3, h4, h5, h6, p, input, label, select, button, a
 	font-family: "Public Sans", sans-serif
 	color: black
 	line-height: 1
+	word-wrap: break-word
+
+h1, p
+	text-align: center
+	line-height: 1.5
 
 a
 	text-decoration: none
@@ -47,6 +52,15 @@ button
 
 input, select, button
 	outline: none
+	text-align: center
+	border-radius: $border-radius
+	border: 0
+	box-shadow: $box-shadow-passive
+	transition: 250ms
+
+	&:hover, &:focus
+		box-shadow: $box-shadow-active
+		transition: 250ms
 
 body
 	width: 100%
@@ -54,12 +68,11 @@ body
 	padding: 0
 	margin: 0
 	background: white
-	scroll-behavior: contain
 
 header 
 	width: inherit
 	top: 0
-	position: sticky
+	position: fixed
 	display: flex
 	flex-flow: row nowrap
 	justify-content: space-between
@@ -88,6 +101,7 @@ main
 			border-radius: $border-radius
 			box-shadow: $box-shadow-passive
 			transition: 250ms
+			overflow: hidden
 
 			&:hover, &:focus
 				box-shadow: $box-shadow-active
@@ -96,10 +110,11 @@ main
 			img
 				border-radius: $border-radius $border-radius 0 0
 				width: inherit
+				object-fit: cover
 
 			div
 				display: flex
-				flex-flow: row nowrap
+				flex-flow: row wrap
 				justify-content: space-between
 				align-items: center
 
@@ -110,9 +125,9 @@ main
 		align-items: center
 
 		div
+			width: inherit
 			display: flex
-			flex-flow: row nowrap
-			justify-content: space-between
+			flex-flow: row wrap
 			align-items: center
 
 		img
@@ -149,17 +164,6 @@ main
 				justify-content: center
 				align-items: center
 
-			input, select, button
-				text-align: center
-				border-radius: $border-radius
-				border: 0
-				box-shadow: $box-shadow-passive
-				transition: 250ms
-
-				&:hover, &:focus
-					box-shadow: $box-shadow-active
-					transition: 250ms
-
 	section.search
 		width: inherit
 
@@ -174,17 +178,6 @@ main
 				flex-flow: row wrap
 				justify-content: center
 				align-items: center
-
-			input, select, button
-				text-align: center
-				border-radius: $border-radius
-				border: 0
-				box-shadow: $box-shadow-passive
-				transition: 250ms
-
-				&:hover, &:focus
-					box-shadow: $box-shadow-active
-					transition: 250ms
 
 	section.book
 		width: inherit
@@ -201,22 +194,55 @@ main
 				justify-content: center
 				align-items: center
 
-			input, select, button
-				text-align: center
-				border-radius: $border-radius
-				border: 0
-				box-shadow: $box-shadow-passive
+	section.bookings
+		width: inherit
+		display: grid
+		grid-auto-flow: row dense
+		grid-template-columns: repeat(1, 1fr)
+
+		a.booking
+			width: inherit
+			display: flex
+			flex-flow: column wrap
+			justify-content: space-between
+			border-radius: $border-radius
+			box-shadow: $box-shadow-passive
+			transition: 250ms
+			overflow: hidden
+
+			&:hover, &:focus
+				box-shadow: $box-shadow-active
 				transition: 250ms
 
-				&:hover, &:focus
-					box-shadow: $box-shadow-active
-					transition: 250ms
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: space-between
 
+			form
+				display: flex
+				flex-flow: column nowrap
+				align-items: center
+	
+	section.profile
+		width: inherit
+
+		form
+			width: inherit
+			display: flex
+			flex-flow: row wrap
+			justify-content: center
+
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+				align-items: center
 
 footer 
 	width: inherit
 	bottom: 0
-	position: sticky
+	position: fixed
 	display: flex
 	flex-flow: row nowrap
 	background: $transluscent-white
@@ -232,7 +258,7 @@ footer
 		font-size: 24px
 
 	h2, a, input
-		font-size: 16px
+		font-size: 14px
 
 	h3, p, label, select, button
 		font-size: 12px
@@ -250,6 +276,7 @@ footer
 				margin: $gutter-small
 
 	main 
+		margin: #{($gutter-small * 2) + $icon-small} 0
 		
 		section.organizations
 			padding: $gutter-small
@@ -257,11 +284,18 @@ footer
 			column-gap: $gutter-small
 			row-gap: $gutter-small
 
+			a.organization
+				img
+					height: calc(100vw - #{2 * $gutter-small})
+
 		section.organization
 			padding: $gutter-small
+			
+			div
+				justify-content: space-between
 
-			div, img
-				width: 100%
+				img
+					width: 100%
 
 		section.ratings
 			padding: $gutter-small
@@ -272,20 +306,18 @@ footer
 		section.rate
 			padding: $gutter-small
 
-			form 
-				div
-					input 
-						width: 100%
-
 		section.search
 			padding: $gutter-small
 
-			form 
-				div
-					input 
-						width: 100%
-
 		section.book
+			padding: $gutter-small
+
+		section.bookings
+			padding: $gutter-small
+			column-gap: $gutter-small
+			row-gap: $gutter-small
+
+		section.profile
 			padding: $gutter-small
 
 	footer 
@@ -306,10 +338,10 @@ footer
 		font-size: 32px
 
 	h2, a, input
-		font-size: 20px
+		font-size: 16px
 
 	h3, p, label, select, button
-		font-size: 16px
+		font-size: 14px
 
 	input, select, button
 		margin: $gutter-medium / 2
@@ -323,7 +355,8 @@ footer
 				height: $icon-medium
 				margin: $gutter-medium
 
-	main 
+	main
+		margin: #{($gutter-medium * 2) + $icon-medium} 0
 		
 		section.organizations
 			padding: $gutter-medium
@@ -331,11 +364,18 @@ footer
 			column-gap: $gutter-medium
 			row-gap: $gutter-medium
 
+			a.organization
+				img
+					height: calc(#{100vw / 2} - #{3 * $gutter-medium})
+
 		section.organization
 			padding: $gutter-medium
 
-			div, img
-				width: 66.66%
+			div
+				justify-content: space-around
+
+				img
+					width: 50%
 
 		section.ratings
 			padding: $gutter-medium
@@ -346,23 +386,20 @@ footer
 		section.rate
 			padding: $gutter-medium
 
-			form 
-				div
-					input 
-						width: 66.66%
-
 		section.search
 			padding: $gutter-medium
-
-			form 
-				div
-					input 
-						width: 66.66%
 
 		section.book
 			padding: $gutter-medium
 
-				
+		section.bookings
+			padding: $gutter-medium
+			column-gap: $gutter-medium
+			row-gap: $gutter-medium
+
+		section.profile
+			padding: $gutter-medium
+	
 	footer 
 		justify-content: space-around
 
@@ -381,10 +418,10 @@ footer
 		font-size: 40px
 
 	h2, a, input
-		font-size: 24px
+		font-size: 18px
 
 	h3, p, label, select, button
-		font-size: 20px
+		font-size: 16px
 
 	input, select, button
 		margin: $gutter-large / 2
@@ -399,47 +436,55 @@ footer
 				height: $icon-large
 				margin: $gutter-large
 
-	main 
+	main
+		margin: #{($gutter-large * 2) + $icon-large} 0
 		
 		section.organizations
 			padding: $gutter-large	
-			grid-template-columns: repeat(3, 1fr)
+			grid-template-columns: repeat(4, 1fr)
 			column-gap: $gutter-large
 			row-gap: $gutter-large
+
+			a.organization
+				img
+					height: calc(#{100vw / 4} - #{5 * $gutter-large})
 
 		section.organization
 			padding: $gutter-large
 
-			div, img
-				width: 25%
+			div
+				justify-content: center
+
+				img
+					width: 25%
 
 		section.ratings
 			padding: $gutter-large
-			grid-template-columns: repeat(3, 1fr)
+			grid-template-columns: repeat(4, 1fr)
 			column-gap: $gutter-large
 			row-gap: $gutter-large
 
 		section.rate
 			padding: $gutter-large
 
-			form 
-				div
-					input 
-						width: 33.33%
-
 		section.search
 			padding: $gutter-large
 
-			form 
-				div
-					input 
-						width: 33.33%
-
 		section.book
+			padding: $gutter-large
+		
+		section.bookings
+			padding: $gutter-large
+			column-gap: $gutter-large
+			row-gap: $gutter-large
+
+		section.profile
 			padding: $gutter-large
 				
 	footer 
 		justify-content: center
+		column-gap: $gutter-large
+		row-gap: $gutter-large
 
 		a
 			img

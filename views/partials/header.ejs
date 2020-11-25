@@ -1,15 +1,10 @@
 <header>
-  <div>
-    <a href="/"><img src="/images/logo.png" alt="" /></a>
-  </div>
-  <div>
-    <a href="/"><img src="/images/home.png" alt="" /></a>
-    <a href="/organizations/search"><img src="/images/search.png" alt="" /></a>
-    <% if (user) { %>
-    <a href="/users/logout"><img src="/images/user.png" alt="" /></a>
-    <% } else { %>
-    <a href="/users/login"><img src="/images/user.png" alt="" /></a>
-    <% } %>
-    <a href="/users/bookings"><img src="/images/bookings.png" alt="" /></a>
-  </div>
+	<div>
+		<a href="/"><img src="/images/logo.png" alt="" /></a>
+	</div>
+	<div>
+		<a href="/organizations/search?filter=hotel"><img src="/images/hotel.png" alt=""/></a>
+		<a href="/organizations/search?filter=monument"><img src="/images/monument.png" alt=""/></a>
+		<a href="/organizations/search?filter=market"><img src="/images/shop.png" alt=""/></a>
+	</div>
 </header>

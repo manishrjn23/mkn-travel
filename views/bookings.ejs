@@ -1,27 +1,48 @@
 <%- include('partials/header'); %>
 <main>
-  <h1>Bookings</h1>
-  <section class="organizations">
-    <% bookings.forEach(function(booking) { %>
-    <a
-      class="organization"
-      href="/organizations/info/<%-booking.organization._id%>"
-    >
-      <img src="<%-booking.organization.images[0]%>" alt="" />
-      <div>
-        <h3>&#x20B9;<%-booking.cost %></h3>
-        <h2><%-booking.organization.name %></h2>
-        <h2><%-booking.organization.city %></h2>
-        <h3><%-booking.date1 %></h3>
-        <% if(booking.date2){ %> -
-        <h3><%-booking.date2 %></h3>
-        <% } %>
-        <form action="/users/bookings/<%-booking._id%> " method="POST">
-          <input type="submit" value="x" />
-        </form>
-      </div>
-    </a>
-    <% }) %>
-  </section>
+	<h1>Profile</h1>
+	<section class="profile">
+		<form action="">
+			<div>
+				<label for="name">Name </label>
+				<input type="text" name="name" placeholder="Name">
+			</div>
+			<div>
+				<label for="name">Phone </label>
+				<input type="number" name="name" placeholder="9876543210">
+			</div>
+		</form>
+	</section>
+	<h1>Bookings</h1>
+	<section class="bookings">
+		<% bookings.forEach(function(booking) { %>
+			<a class="booking" href="/organizations/info/<%- booking.organization._id %>" >
+					<div>
+						<h2><%- booking.organization.name %></h2>
+						<h3><%- booking.organization.city %></h3>
+					</div>
+					<div>
+						<h3>
+							<% if (booking.date2) { %>
+								Check In Date: 
+							<% } else { %>
+								Visit Date:
+							<% }%>
+							<%- booking.date1 %>
+						</h3>
+						<% if (booking.date2) { %>
+							<h3>Check Out Date: <%- booking.date2 %></h3>
+						<% } %>
+					</div>
+					<div>
+						<h3>&#x1F464; <%- booking.people %></h3>
+						<h3>&#x20B9; <%- booking.cost %></h3>
+						<form action="/users/bookings/<%- booking._id %>" method="POST">
+							<button type="submit">&#x2715;</button>
+						</form>
+					</div>
+			</a>
+		<% }) %>
+	</section>
 </main>
 <%- include('partials/footer'); %>

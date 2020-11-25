@@ -6,14 +6,23 @@ const { ensureAuthenticated } = require("../config/auth");
 const User = require("../models/User");
 const Organizations = require("../models/Organizations");
 const Booking = require("../models/Booking");
+
+//profile page
+router.get('/profile',(req,res)=>{
+  res.render('profile',{user:req.user});
+})
+
+//Sign up page
 router.get("/sign-up", (req, res) => {
   res.render("sign-up");
 });
 
+//Login page
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
+//Make an account route
 router.post("/sign-up", (req, res) => {
   const { name, email, password, password2 } = req.body;
   //validate data
@@ -76,6 +85,7 @@ router.post("/sign-up", (req, res) => {
   }
 });
 
+//Login route
 router.post("/login", function (req, res, next) {
   passport.authenticate("local", {
     successRedirect: "/dashboard",
@@ -84,6 +94,8 @@ router.post("/login", function (req, res, next) {
   })(req, res, next);
 });
 
+
+//Google login routes
 router.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -99,6 +111,7 @@ router.get(
   }
 );
 
+//Bookings page
 router.get("/bookings", ensureAuthenticated, (req, res) => {
   Booking.find({ _id: { $in: req.user.bookings } }, (err, bookings) => {
     if (err) throw err;
@@ -108,10 +121,10 @@ router.get("/bookings", ensureAuthenticated, (req, res) => {
   });
 });
 
+//Cancel booking
 router.post("/bookings/:bookID", ensureAuthenticated, (req, res) => {
   Booking.deleteOne({ id: req.params.bookID })
     .then(() => {
-      console.log("booking cancelled");
       ind = req.user.bookings.indexOf(req.params.bookID);
       req.user.bookings.splice(ind, 1);
       req.user.save();
@@ -122,6 +135,7 @@ router.post("/bookings/:bookID", ensureAuthenticated, (req, res) => {
     });
 });
 
+//Edit profile
 router.post("/edit_profile", ensureAuthenticated, (req, res) => {
   const { name, phone } = req.body;
   user_id = req.user.id;
@@ -139,6 +153,7 @@ router.post("/edit_profile", ensureAuthenticated, (req, res) => {
   );
 });
 
+//Logging out
 router.get("/logout", function (req, res, next) {
   req.logout();
   req.flash("success_message", "Logged out successfully");

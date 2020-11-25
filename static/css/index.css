@@ -17,6 +17,12 @@ h1, h2, h3, h4, h5, h6, p, input, label, select, button, a {
   font-family: "Public Sans", sans-serif;
   color: black;
   line-height: 1;
+  word-wrap: break-word;
+}
+
+h1, p {
+  text-align: center;
+  line-height: 1.5;
 }
 
 a {
@@ -33,6 +39,15 @@ button:hover {
 
 input, select, button {
   outline: none;
+  text-align: center;
+  border-radius: 16px;
+  border: 0;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
+  transition: 250ms;
+}
+input:hover, input:focus, select:hover, select:focus, button:hover, button:focus {
+  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
+  transition: 250ms;
 }
 
 body {
@@ -41,13 +56,12 @@ body {
   padding: 0;
   margin: 0;
   background: white;
-  scroll-behavior: contain;
 }
 
 header {
   width: inherit;
   top: 0;
-  position: sticky;
+  position: fixed;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -77,6 +91,7 @@ main section.organizations a.organization {
   border-radius: 16px;
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
   transition: 250ms;
+  overflow: hidden;
 }
 main section.organizations a.organization:hover, main section.organizations a.organization:focus {
   box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
@@ -85,10 +100,11 @@ main section.organizations a.organization:hover, main section.organizations a.or
 main section.organizations a.organization img {
   border-radius: 16px 16px 0 0;
   width: inherit;
+  object-fit: cover;
 }
 main section.organizations a.organization div {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -99,9 +115,9 @@ main section.organization {
   align-items: center;
 }
 main section.organization div {
+  width: inherit;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  flex-flow: row wrap;
   align-items: center;
 }
 main section.organization img {
@@ -138,17 +154,6 @@ main section.rate form div {
   justify-content: center;
   align-items: center;
 }
-main section.rate form input, main section.rate form select, main section.rate form button {
-  text-align: center;
-  border-radius: 16px;
-  border: 0;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
-  transition: 250ms;
-}
-main section.rate form input:hover, main section.rate form input:focus, main section.rate form select:hover, main section.rate form select:focus, main section.rate form button:hover, main section.rate form button:focus {
-  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
-  transition: 250ms;
-}
 main section.search {
   width: inherit;
 }
@@ -163,17 +168,6 @@ main section.search form div {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-}
-main section.search form input, main section.search form select, main section.search form button {
-  text-align: center;
-  border-radius: 16px;
-  border: 0;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
-  transition: 250ms;
-}
-main section.search form input:hover, main section.search form input:focus, main section.search form select:hover, main section.search form select:focus, main section.search form button:hover, main section.search form button:focus {
-  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
-  transition: 250ms;
 }
 main section.book {
   width: inherit;
@@ -190,22 +184,56 @@ main section.book form div {
   justify-content: center;
   align-items: center;
 }
-main section.book form input, main section.book form select, main section.book form button {
-  text-align: center;
+main section.bookings {
+  width: inherit;
+  display: grid;
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(1, 1fr);
+}
+main section.bookings a.booking {
+  width: inherit;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
   border-radius: 16px;
-  border: 0;
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
   transition: 250ms;
+  overflow: hidden;
 }
-main section.book form input:hover, main section.book form input:focus, main section.book form select:hover, main section.book form select:focus, main section.book form button:hover, main section.book form button:focus {
+main section.bookings a.booking:hover, main section.bookings a.booking:focus {
   box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.5);
   transition: 250ms;
+}
+main section.bookings a.booking div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+main section.bookings a.booking form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+main section.profile {
+  width: inherit;
+}
+main section.profile form {
+  width: inherit;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+main section.profile form div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
   width: inherit;
   bottom: 0;
-  position: sticky;
+  position: fixed;
   display: flex;
   flex-flow: row nowrap;
   background: rgba(255, 255, 255, 0.25);
@@ -223,7 +251,7 @@ footer {
   }
 
   h2, a, input {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   h3, p, label, select, button {
@@ -243,16 +271,25 @@ footer {
     margin: 16px;
   }
 
+  main {
+    margin: 56px 0;
+  }
   main section.organizations {
     padding: 16px;
     grid-template-columns: repeat(1, 1fr);
     column-gap: 16px;
     row-gap: 16px;
   }
+  main section.organizations a.organization img {
+    height: calc(100vw - 32px);
+  }
   main section.organization {
     padding: 16px;
   }
-  main section.organization div, main section.organization img {
+  main section.organization div {
+    justify-content: space-between;
+  }
+  main section.organization div img {
     width: 100%;
   }
   main section.ratings {
@@ -264,16 +301,18 @@ footer {
   main section.rate {
     padding: 16px;
   }
-  main section.rate form div input {
-    width: 100%;
-  }
   main section.search {
     padding: 16px;
   }
-  main section.search form div input {
-    width: 100%;
-  }
   main section.book {
+    padding: 16px;
+  }
+  main section.bookings {
+    padding: 16px;
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+  main section.profile {
     padding: 16px;
   }
 
@@ -296,11 +335,11 @@ footer {
   }
 
   h2, a, input {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   h3, p, label, select, button {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   input, select, button {
@@ -316,17 +355,26 @@ footer {
     margin: 24px;
   }
 
+  main {
+    margin: 80px 0;
+  }
   main section.organizations {
     padding: 24px;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 24px;
     row-gap: 24px;
   }
+  main section.organizations a.organization img {
+    height: calc(100vw/2 - 72px);
+  }
   main section.organization {
     padding: 24px;
   }
-  main section.organization div, main section.organization img {
-    width: 66.66%;
+  main section.organization div {
+    justify-content: space-around;
+  }
+  main section.organization div img {
+    width: 50%;
   }
   main section.ratings {
     padding: 24px;
@@ -337,16 +385,18 @@ footer {
   main section.rate {
     padding: 24px;
   }
-  main section.rate form div input {
-    width: 66.66%;
-  }
   main section.search {
     padding: 24px;
   }
-  main section.search form div input {
-    width: 66.66%;
-  }
   main section.book {
+    padding: 24px;
+  }
+  main section.bookings {
+    padding: 24px;
+    column-gap: 24px;
+    row-gap: 24px;
+  }
+  main section.profile {
     padding: 24px;
   }
 
@@ -369,11 +419,11 @@ footer {
   }
 
   h2, a, input {
-    font-size: 24px;
+    font-size: 18px;
   }
 
   h3, p, label, select, button {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   input, select, button {
@@ -389,42 +439,55 @@ footer {
     margin: 32px;
   }
 
+  main {
+    margin: 104px 0;
+  }
   main section.organizations {
     padding: 32px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 32px;
     row-gap: 32px;
+  }
+  main section.organizations a.organization img {
+    height: calc(100vw/4 - 160px);
   }
   main section.organization {
     padding: 32px;
   }
-  main section.organization div, main section.organization img {
+  main section.organization div {
+    justify-content: center;
+  }
+  main section.organization div img {
     width: 25%;
   }
   main section.ratings {
     padding: 32px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 32px;
     row-gap: 32px;
   }
   main section.rate {
     padding: 32px;
   }
-  main section.rate form div input {
-    width: 33.33%;
-  }
   main section.search {
     padding: 32px;
   }
-  main section.search form div input {
-    width: 33.33%;
-  }
   main section.book {
+    padding: 32px;
+  }
+  main section.bookings {
+    padding: 32px;
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+  main section.profile {
     padding: 32px;
   }
 
   footer {
     justify-content: center;
+    column-gap: 32px;
+    row-gap: 32px;
   }
   footer a img {
     width: 40px;

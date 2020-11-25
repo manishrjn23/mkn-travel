@@ -1,36 +1,36 @@
 <%- include('partials/header'); %>
 <main>
-  <% if(user){ %> <% if(user.bookings.length){ %>
-  <h1>Based on your recent bookings</h1>
-  <section class="organizations">
-    <% recommendations.some(function(recc,index) { %>
-    <a class="organization" href="/organizations/info/<%- recc.id%>">
-      <img src="<%-recc.images[0]%>" alt="" />
-      <div>
-        <h2><%- recc.name %></h2>
-        <h3><%- recc.city %></h3>
-        <% if(recc.overall_average_rating){ %>
-        <h4><%- recc.overall_average_rating %>★</h4>
-        <% } %>
-      </div>
-    </a>
-    <% return index===2 %> <% }) %>
-  </section>
-  <% } %> <% } %>
-  <h1>Explore</h1>
-  <section class="organizations">
-    <% organizations.forEach(function(organization) { %>
-    <a class="organization" href="/organizations/info/<%- organization.id%>">
-      <img src="<%-organization.images[0]%>" alt="" />
-      <div>
-        <h2><%- organization.name %></h2>
-        <h3><%- organization.city %></h3>
-        <% if(organization.overall_average_rating){ %>
-        <h4><%- organization.overall_average_rating %>★</h4>
-        <% } %>
-      </div>
-    </a>
-    <% }) %>
-  </section>
+	<% if(user){ %> <% if(user.bookings.length){ %>
+	<h1>Reccomendations for You</h1>
+	<section class="organizations">
+		<% recommendations.some( function(reccomendation, index) { %>
+		<a class="organization" href="/organizations/info/<%- reccomendation.id%>">
+			<img src="<%- reccomendation.images[0] %>" alt="" />
+			<div>
+				<h2><%- reccomendation.name %></h2>
+				<h3><%- reccomendation.city %></h3>
+				<% if (reccomendation.overall_average_rating) { %>
+					<h4><%- reccomendation.overall_average_rating %> ★</h4>
+				<% } %>
+			</div>
+		</a>
+		<% return index===2 %> <% }) %>
+	</section>
+	<% } %> <% } %>
+	<h1>Explore</h1>
+	<section class="organizations">
+		<% organizations.forEach(function(organization) { %>
+		<a class="organization" href="/organizations/info/<%- organization.id%>">
+			<img src="<%-organization.images[0]%>" alt="" />
+			<div>
+				<h2><%- organization.name %></h2>
+				<h3><%- organization.city %></h3>
+				<% if(organization.overall_average_rating){ %>
+					<h3><%- organization.overall_average_rating %>★</h3>
+				<% } %>
+			</div>
+		</a>
+		<% }) %>
+	</section>
 </main>
 <%- include('partials/footer'); %>

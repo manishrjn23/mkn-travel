@@ -1,54 +1,48 @@
 <%- include('partials/header'); %>
 <main>
-  <h1>Search</h1>
-  <section class="search">
-    <form method="get" action="/organizations/search">
-      <div>
-        <input
-          type="text"
-          name="search"
-          placeholder="Name"
-          autocomplete="off"
-          autofocus
-        />
-        <input type="text" name="city" placeholder="City" autocomplete="off" />
-      </div>
-      <div>
-        <div>
-          <label for="filter">Filter</label>
-          <select name="filter">
-            <option value="hotel">Hotels</option>
-            <option value="monument">Monuments</option>
-            <option value="market">Shops</option>
-          </select>
-        </div>
-        <div>
-          <label for="sort">Sort</label>
-          <select name="sort">
-            <option value="overall_average_rating">Average Rating</option>
-            <option value="value_for_money">Value for money</option>
-            <option value="staff_service">Hospitality</option>
-            <option value="descending_price">Price: High to low</option>
-            <option value="ascending_price">Price: Low to high</option>
-          </select>
-        </div>
-      </div>
-      <button type="submit">Search</button>
-    </form>
-  </section>
-  <section class="organizations">
-    <% organizations.forEach(function(organization) { %>
-    <a class="organization" href="/organizations/info/<%- organization.id%>">
-      <img src="<%- organization.images[0]%>" alt="" />
-      <div>
-        <h2><%- organization.name%></h2>
-        <h3><%- organization.city%></h3>
-        <% if(organization.overall_average_rating){ %>
-        <h4><%- organization.overall_average_rating%>★</h4>
-        <% } %>
-      </div>
-    </a>
-    <% }) %>
-  </section>
+	<h1>Search</h1>
+	<section class="search">
+		<form method="get" action="/organizations/search">
+			<div>
+				<input type="text" name="search" placeholder="Name" autocomplete="off" autofocus />
+				<input type="text" name="city" placeholder="City" autocomplete="off" />
+			</div>
+			<div>
+				<div>
+					<label for="filter">Filter</label>
+					<select name="filter">
+						<option value="hotel">Hotels</option>
+						<option value="monument">Monuments</option>
+						<option value="market">Shops</option>
+					</select>
+				</div>
+				<div>
+					<label for="sort">Sort</label>
+					<select name="sort">
+						<option value="overall_average_rating">Average Rating</option>
+						<option value="value_for_money">Value for Money</option>
+						<option value="staff_service">Hospitality</option>
+						<option value="descending_price">Price: High to low</option>
+						<option value="ascending_price">Price: Low to high</option>
+					</select>
+				</div>
+			</div>
+			<button type="submit">Search</button>
+		</form>
+	</section>
+	<section class="organizations">
+		<% organizations.forEach(function(organization) { %>
+		<a class="organization" href="/organizations/info/<%- organization.id%>">
+			<img src="<%- organization.images[0]%>" alt="" />
+			<div>
+				<h2><%- organization.name%></h2>
+				<h3><%- organization.city%></h3>
+				<% if(organization.overall_average_rating){ %>
+				<h4><%- organization.overall_average_rating%>★</h4>
+				<% } %>
+			</div>
+		</a>
+		<% }) %>
+	</section>
 </main>
 <%- include('partials/footer'); %>
