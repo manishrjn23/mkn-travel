@@ -2,7 +2,21 @@
 <main>
   <% if(user){ %> 
     <% if(user.bookings.length){ %> 
-    <h1>Based on your recent booking</h1>
+    <h1>Based on your recent bookings</h1>
+    <section class="organizations">
+      <% recommendations.forEach(function(recc) { %>
+      <a class="organization" href="/organizations/info/<%- recc.id%>">
+        <img src="<%-recc.images[0]%>" alt="" />
+        <div>
+          <h2><%- recc.name %></h2>
+          <h3><%- recc.city %></h3>
+          <% if(recc.overall_average_rating){ %>
+          <h4><%- recc.overall_average_rating %>★</h4>
+          <% } %>
+        </div>
+      </a>
+      <% }) %>
+    </section>
     <% } %> 
   <% } %> 
   <h1>Explore</h1>

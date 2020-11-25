@@ -9,6 +9,7 @@
     </div>
     <img src="<%- organization.images[0]%>" alt="" />
   </section>
+  <% if(!(organization.field==='market')){ %> 
   <h1>Book A Visit</h1>
   <section class="book">
     <form method="post" action="/organizations/info/<%-organization.id%>/book">
@@ -30,6 +31,7 @@
       <button type="submit">Book</button>
     </form>
   </section>
+<% } %> 
   <% if (organization.ratings.length) { %>
   <h1>Some Reviews</h1>
   <section class="ratings">

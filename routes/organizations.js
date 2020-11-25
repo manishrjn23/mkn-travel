@@ -126,7 +126,6 @@ router.post("/info/:id/book", ensureAuthenticated, (req, res) => {
           cost:cost
         });
       }
-      console.log(newBooking);
       newBooking
         .save()
         .then((booking) => {
