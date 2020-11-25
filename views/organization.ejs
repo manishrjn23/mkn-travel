@@ -4,7 +4,17 @@
 	<section class="organization">
 		<div>
 			<h2><%- organization.city %></h2>
+			<% if(organization.overall_average_rating){ %> 
 			<h2><%- organization.overall_average_rating %>★</h2>
+			<% } %> 
+			<% if(organization.field==='hotel'){ %> 
+				<h2>Price per night: &#x20B9; <%- organization.price %> per person</h2>
+			<% } %>
+			<% if(organization.field==='monument'){ %> 
+				<h2>Ticket price: &#x20B9;  <%- organization.price %> per person</h2>
+				<% } %>
+
+
 		</div>
 		<div>
 			<img src="<%- organization.images[0]%>" alt="" />

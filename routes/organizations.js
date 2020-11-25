@@ -31,6 +31,13 @@ router.get("/search", (req, res) => {
   if (req.query.sort === "staff_service") {
     sortCondition["overall_staff_rating"] = -1;
   }
+  if (req.query.sort === "descending_price") {
+    sortCondition["price"] = -1;
+  }
+  if (req.query.sort === "ascending_price") {
+    sortCondition["price"] = 1;
+  }
+
   if (req.query.search && req.query.city) {
     const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
     const regex2 = new RegExp(searchRegularExpression(req.query.city), "gi");
