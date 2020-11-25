@@ -5,14 +5,14 @@
 		<form action="/users/edit_profile" method="POST">
 			<div>
 				<label for="name">Name </label>
-				<input type="text" name="name" value="<%-user.name %> ">
+				<input type="text" name="name" value="<%- user.name %> ">
 			</div>
 			<div>
 				<label for="name">Phone </label>
-				<input type="text" name="phone" value="<%-user.phone %> ">
+				<input type="text" name="phone" value="<%- user.phone %> ">
 			</div>
 			<div>
-				<input type="submit" value="Edit">
+				<button type="submit">Edit</button>
 			</div>
 		</form>
 	</section>

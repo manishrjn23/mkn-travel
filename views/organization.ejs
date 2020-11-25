@@ -39,7 +39,7 @@
 		<section class="ratings">
 			<% c=0 %> <% organization.ratings.forEach(function(rating) { %> <%
 			if(rating.review){ %> <% c++ %>
-			<article>
+			<article class="rating">
 				<h2><%- rating.user %></h2>
 				<div>
 					<h3><%- rating.date %></h3>

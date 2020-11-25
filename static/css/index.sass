@@ -14,11 +14,15 @@ $icon-small: 24px
 $icon-medium: 32px
 $icon-large: 40px
 
+$image-large: 100%
+$image-medium: 50%
+$image-small: 25%
+
 $gutter-small: 16px
 $gutter-medium: 24px
 $gutter-large: 32px
 
-body, header, div, img, main, section, article, h1, h2, h3, h4, h5, h6, p, button
+body, header, div, img, main, section, article, h1, h2, h3, h4, h5, h6, p, button, a, span
 	padding: 0
 	margin: 0
 	box-sizing: border-box
@@ -30,7 +34,7 @@ img
 p
 	text-align: justify
 
-h1, h2, h3, h4, h5, h6, p, input, label, select, button, a
+h1, h2, h3, h4, h5, h6, p, input, label, select, button, a, span
 	font-family: "Public Sans", sans-serif
 	color: black
 	line-height: 1
@@ -50,17 +54,30 @@ button
 	&:hover
 		cursor: pointer
 
+form
+	width: inherit
+
 input, select, button
 	outline: none
 	text-align: center
 	border-radius: $border-radius
 	border: 0
+	background: white
 	box-shadow: $box-shadow-passive
 	transition: 250ms
 
 	&:hover, &:focus
 		box-shadow: $box-shadow-active
 		transition: 250ms
+
+span
+	border-radius: $border-radius
+
+	&.error
+		box-shadow: 0px 0px 4px 1px indianred
+
+	&.success
+		box-shadow: 0px 0px 4px 1px lightgreen
 
 body
 	width: 100%
@@ -69,15 +86,17 @@ body
 	margin: 0
 	background: white
 
-header 
+header, footer
 	width: inherit
-	top: 0
 	position: fixed
 	display: flex
 	flex-flow: row nowrap
-	justify-content: space-between
 	background: $transluscent-white
 	backdrop-filter: blur(64px)
+
+header 
+	top: 0
+	justify-content: space-between
 	box-shadow: 0px 4px 16px 2px $transluscent-black-25
 	
 	div
@@ -91,17 +110,66 @@ main
 	flex-flow: column nowrap
 	align-items: center
 
-	section.organizations
-		width: inherit
+footer 
+	bottom: 0
+	box-shadow: 0px -4px 16px 2px $transluscent-black-25
+		
+section 
+	width: inherit
+
+	&.authentication
+		display: flex
+		flex-flow: column wrap
+		align-items: center
+
+	&.search, &.book, &.rate, &.authentication
+		form
+			display: flex
+			flex-flow: column nowrap
+			align-items: center
+
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+				align-items: center
+
+	&.profile
+		form
+			display: flex
+			flex-flow: row wrap
+			justify-content: center
+
+			div
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+				align-items: center
+
+	&.organization
+		display: flex
+		flex-flow: column wrap
+		align-items: center
+
+		div
+			width: inherit
+			display: flex
+			flex-flow: row wrap
+			align-items: center
+
+		img
+			border-radius: $border-radius
+
+	&.organizations, &.ratings, &.bookings
 		display: grid
 		grid-auto-flow: row dense
 
+	&.organizations
 		a.organization
 			width: inherit
 			border-radius: $border-radius
 			box-shadow: $box-shadow-passive
 			transition: 250ms
-			overflow: hidden
 
 			&:hover, &:focus
 				box-shadow: $box-shadow-active
@@ -118,27 +186,11 @@ main
 				justify-content: space-between
 				align-items: center
 
-	section.organization
-		width: inherit
-		display: flex
-		flex-flow: column wrap
-		align-items: center
-
-		div
-			width: inherit
-			display: flex
-			flex-flow: row wrap
-			align-items: center
-
-		img
+	&.ratings
+		
+		article.rating 
 			border-radius: $border-radius
-
-	section.ratings
-		width: inherit
-		display: grid
-		grid-auto-flow: row dense
-
-		article 
+			box-shadow: $box-shadow-passive
 			border-radius: $border-radius
 			box-shadow: $box-shadow-passive
 
@@ -149,55 +201,7 @@ main
 				justify-content: space-between
 				align-items: center
 
-	section.rate
-		width: inherit
-		
-		form
-			width: inherit
-			display: flex
-			flex-flow: column nowrap
-			align-items: center
-
-			div
-				display: flex
-				flex-flow: row wrap
-				justify-content: center
-				align-items: center
-
-	section.search
-		width: inherit
-
-		form
-			width: inherit
-			display: flex
-			flex-flow: column nowrap
-			align-items: center
-
-			div
-				display: flex
-				flex-flow: row wrap
-				justify-content: center
-				align-items: center
-
-	section.book
-		width: inherit
-
-		form
-			width: inherit
-			display: flex
-			flex-flow: column nowrap
-			align-items: center
-
-			div
-				display: flex
-				flex-flow: row wrap
-				justify-content: center
-				align-items: center
-
-	section.bookings
-		width: inherit
-		display: grid
-		grid-auto-flow: row dense
+	&.bookings
 		grid-template-columns: repeat(1, 1fr)
 
 		a.booking
@@ -208,7 +212,6 @@ main
 			border-radius: $border-radius
 			box-shadow: $box-shadow-passive
 			transition: 250ms
-			overflow: hidden
 
 			&:hover, &:focus
 				box-shadow: $box-shadow-active
@@ -223,32 +226,8 @@ main
 				display: flex
 				flex-flow: column nowrap
 				align-items: center
-	
-	section.profile
-		width: inherit
 
-		form
-			width: inherit
-			display: flex
-			flex-flow: row wrap
-			justify-content: center
 
-			div
-				display: flex
-				flex-flow: row wrap
-				justify-content: center
-				align-items: center
-
-footer 
-	width: inherit
-	bottom: 0
-	position: fixed
-	display: flex
-	flex-flow: row nowrap
-	background: $transluscent-white
-	backdrop-filter: blur(64px)
-	box-shadow: 0px -4px 16px 2px $transluscent-black-25
-			
 @media (max-width: $breakpoint-small-medium)
 
 	h1, h2, h3, h4, h5, h6, p
@@ -257,16 +236,16 @@ footer
 	h1
 		font-size: 24px
 
-	h2, a, input
+	h2, a, input, span
 		font-size: 14px
 
 	h3, p, label, select, button
 		font-size: 12px
 
-	input, select, button
+	input, select, button, span
 		margin: $gutter-small / 2
 	
-	input, label, select, button
+	input, label, select, button, span
 		padding: $gutter-small / 2
 
 	header 
@@ -277,57 +256,36 @@ footer
 
 	main 
 		margin: #{($gutter-small * 2) + $icon-small} 0
-		
-		section.organizations
-			padding: $gutter-small
-			grid-template-columns: repeat(1, 1fr)
-			column-gap: $gutter-small
-			row-gap: $gutter-small
-
-			a.organization
-				img
-					height: calc(100vw - #{2 * $gutter-small})
-
-		section.organization
-			padding: $gutter-small
-			
-			div
-				justify-content: space-between
-
-				img
-					width: 100%
-
-		section.ratings
-			padding: $gutter-small
-			grid-template-columns: repeat(1, 1fr)
-			column-gap: $gutter-small
-			row-gap: $gutter-small
-		
-		section.rate
-			padding: $gutter-small
-
-		section.search
-			padding: $gutter-small
-
-		section.book
-			padding: $gutter-small
-
-		section.bookings
-			padding: $gutter-small
-			column-gap: $gutter-small
-			row-gap: $gutter-small
-
-		section.profile
-			padding: $gutter-small
 
 	footer 
 		justify-content: space-between
-
 		a
 			img
 				width: $icon-small
 				height: $icon-small
 				margin: $gutter-small
+
+	section
+		padding: $gutter-small
+
+		&.organization
+			div
+				justify-content: space-between
+
+				img
+					width: $image-large
+
+		&.organizations, &.bookings, &.ratings
+			column-gap: $gutter-small
+			row-gap: $gutter-small
+
+		&.organizations, &.ratings
+			grid-template-columns: repeat(1, 1fr)
+
+		&.organizations
+			a.organization
+				img
+					height: calc(100vw - #{2 * $gutter-small})
 
 @media (min-width: $breakpoint-small-medium + 1) and (max-width: $breakpoint-medium-large)
 
@@ -337,16 +295,16 @@ footer
 	h1
 		font-size: 32px
 
-	h2, a, input
+	h2, a, input, span
 		font-size: 16px
 
 	h3, p, label, select, button
 		font-size: 14px
 
-	input, select, button
+	input, select, button, span
 		margin: $gutter-medium / 2
 	
-	input, label, select, button
+	input, label, select, button, span
 		padding: $gutter-medium / 2
 
 	header 
@@ -357,49 +315,7 @@ footer
 
 	main
 		margin: #{($gutter-medium * 2) + $icon-medium} 0
-		
-		section.organizations
-			padding: $gutter-medium
-			grid-template-columns: repeat(2, 1fr)
-			column-gap: $gutter-medium
-			row-gap: $gutter-medium
 
-			a.organization
-				img
-					height: calc(#{100vw / 2} - #{3 * $gutter-medium})
-
-		section.organization
-			padding: $gutter-medium
-
-			div
-				justify-content: space-around
-
-				img
-					width: 50%
-
-		section.ratings
-			padding: $gutter-medium
-			grid-template-columns: repeat(2, 1fr)
-			column-gap: $gutter-medium
-			row-gap: $gutter-medium
-
-		section.rate
-			padding: $gutter-medium
-
-		section.search
-			padding: $gutter-medium
-
-		section.book
-			padding: $gutter-medium
-
-		section.bookings
-			padding: $gutter-medium
-			column-gap: $gutter-medium
-			row-gap: $gutter-medium
-
-		section.profile
-			padding: $gutter-medium
-	
 	footer 
 		justify-content: space-around
 
@@ -409,6 +325,28 @@ footer
 				height: $icon-medium
 				margin: $gutter-medium
 
+	section
+		padding: $gutter-medium
+
+		&.organization
+			div
+				justify-content: space-around
+
+				img
+					width: $image-medium
+
+		&.organizations, &.bookings, &.ratings
+			column-gap: $gutter-medium
+			row-gap: $gutter-medium
+
+		&.organizations, &.ratings
+			grid-template-columns: repeat(2, 1fr)
+
+		&.organizations
+			a.organization
+				img
+					height: calc(#{100vw / 2} - #{3 * $gutter-medium})
+	
 @media (min-width: $breakpoint-medium-large + 1)
 
 	h1, h2, h3, h4, h5, h6, p
@@ -417,18 +355,17 @@ footer
 	h1
 		font-size: 40px
 
-	h2, a, input
+	h2, a, input, span
 		font-size: 18px
 
 	h3, p, label, select, button
 		font-size: 16px
 
-	input, select, button
+	input, select, button, span
 		margin: $gutter-large / 2
 	
-	input, label, select, button
+	input, label, select, button, span
 		padding: $gutter-large / 2
-
 
 	header 
 		div
@@ -438,56 +375,34 @@ footer
 
 	main
 		margin: #{($gutter-large * 2) + $icon-large} 0
-		
-		section.organizations
-			padding: $gutter-large	
-			grid-template-columns: repeat(4, 1fr)
-			column-gap: $gutter-large
-			row-gap: $gutter-large
 
-			a.organization
-				img
-					height: calc(#{100vw / 4} - #{5 * $gutter-large})
-
-		section.organization
-			padding: $gutter-large
-
-			div
-				justify-content: center
-
-				img
-					width: 25%
-
-		section.ratings
-			padding: $gutter-large
-			grid-template-columns: repeat(4, 1fr)
-			column-gap: $gutter-large
-			row-gap: $gutter-large
-
-		section.rate
-			padding: $gutter-large
-
-		section.search
-			padding: $gutter-large
-
-		section.book
-			padding: $gutter-large
-		
-		section.bookings
-			padding: $gutter-large
-			column-gap: $gutter-large
-			row-gap: $gutter-large
-
-		section.profile
-			padding: $gutter-large
-				
 	footer 
 		justify-content: center
-		column-gap: $gutter-large
-		row-gap: $gutter-large
 
 		a
 			img
 				width: $icon-large
 				height: $icon-large
 				margin: $gutter-large
+		
+	section
+		padding: $gutter-large
+
+		&.organization
+			div
+				justify-content: center
+
+				img
+					width: $image-small
+
+		&.organizations, &.bookings, &.ratings
+			column-gap: $gutter-large
+			row-gap: $gutter-large
+
+		&.organizations, &.ratings
+			grid-template-columns: repeat(4, 1fr)
+
+		&.organizations
+			a.organization
+				img
+					height: calc(#{100vw / 4} - #{5 * $gutter-large})

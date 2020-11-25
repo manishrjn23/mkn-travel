@@ -1,20 +1,20 @@
 <%- include('partials/header'); %>
 <main>
 	<% if(user){ %> <% if(user.bookings.length){ %>
-	<h1>Recommendations for You</h1>
+	<h1>Recomendations for You</h1>
 	<section class="organizations">
-		<% recommendations.some( function(reccomendation, index) { %>
-		<a class="organization" href="/organizations/info/<%- reccomendation.id%>">
-			<img src="<%- reccomendation.images[0] %>" alt="" />
+		<% recommendations.some( function(recomendation, index) { %>
+		<a class="organization" href="/organizations/info/<%- recomendation.id%>">
+			<img src="<%- recomendation.images[0] %>" alt="" />
 			<div>
-				<h2><%- reccomendation.name %></h2>
-				<h3><%- reccomendation.city %></h3>
-				<% if (reccomendation.overall_average_rating) { %>
-					<h4><%- reccomendation.overall_average_rating %> ★</h4>
+				<h2><%- recomendation.name %></h2>
+				<h3><%- recomendation.city %></h3>
+				<% if (recomendation.overall_average_rating) { %>
+					<h4><%- recomendation.overall_average_rating %> ★</h4>
 				<% } %>
 			</div>
 		</a>
-		<% return index===3%> <% }) %>
+		<% return index === 3 %> <% }) %>
 	</section>
 	<% } %> <% } %>
 	<h1>Explore</h1>
