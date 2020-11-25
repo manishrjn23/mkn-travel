@@ -96,34 +96,34 @@ function searchRegularExpression(searchQuery) {
 }
 
 router.post("/info/:id/book", ensureAuthenticated, (req, res) => {
-  Organizations.findById(req.params.id,(err,org)=>{
-    if(err)throw err;
-    else{
-      if(req.body.date2){
-        d1=new Date(req.body.date1)
-        d2=new Date(req.body.date2)
-        nights=(d2.getTime()-d1.getTime())/(1000 * 3600 * 24); 
-        if(nights<=0){
-          res.redirect('/organizations/info/'+req.params.id)
-          return
+  Organizations.findById(req.params.id, (err, org) => {
+    if (err) throw err;
+    else {
+      if (req.body.date2) {
+        d1 = new Date(req.body.date1);
+        d2 = new Date(req.body.date2);
+        nights = (d2.getTime() - d1.getTime()) / (1000 * 3600 * 24);
+        if (nights <= 0) {
+          res.redirect("/organizations/info/" + req.params.id);
+          return;
         }
-        cost=org.price*nights*req.body.people;
+        cost = org.price * nights * req.body.people;
         newBooking = new Booking({
           user: req.user,
-          organization:org,
+          organization: org,
           date1: req.body.date1,
           date2: req.body.date2,
           people: req.body.people,
-          cost: cost
+          cost: cost,
         });
-      }else{
-        cost=org.price*req.body.people;
+      } else {
+        cost = org.price * req.body.people;
         newBooking = new Booking({
           user: req.user,
           organization: org,
           date1: req.body.date1,
           people: req.body.people,
-          cost:cost
+          cost: cost,
         });
       }
       newBooking
@@ -135,8 +135,7 @@ router.post("/info/:id/book", ensureAuthenticated, (req, res) => {
         })
         .catch((err) => console.log(err));
     }
-  })
-  
+  });
 });
 
 router.post("/info/:id", ensureAuthenticated, (req, res) => {
@@ -181,11 +180,8 @@ router.post("/info/:id", ensureAuthenticated, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get('/test',(req,res)=>{
-  Organizations.updateMany({},
-    {price: 1},
-      function(err, numberAffected){
-      });
-})
+router.get("/test", (req, res) => {
+  Organizations.updateMany({}, { price: 1 }, function (err, numberAffected) {});
+});
 
 module.exports = router;

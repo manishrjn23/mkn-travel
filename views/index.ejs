@@ -1,24 +1,22 @@
 <%- include('partials/header'); %>
 <main>
-  <% if(user){ %> 
-    <% if(user.bookings.length){ %> 
-    <h1>Based on your recent bookings</h1>
-    <section class="organizations">
-      <% recommendations.forEach(function(recc) { %>
-      <a class="organization" href="/organizations/info/<%- recc.id%>">
-        <img src="<%-recc.images[0]%>" alt="" />
-        <div>
-          <h2><%- recc.name %></h2>
-          <h3><%- recc.city %></h3>
-          <% if(recc.overall_average_rating){ %>
-          <h4><%- recc.overall_average_rating %>★</h4>
-          <% } %>
-        </div>
-      </a>
-      <% }) %>
-    </section>
-    <% } %> 
-  <% } %> 
+  <% if(user){ %> <% if(user.bookings.length){ %>
+  <h1>Based on your recent bookings</h1>
+  <section class="organizations">
+    <% recommendations.some(function(recc,index) { %>
+    <a class="organization" href="/organizations/info/<%- recc.id%>">
+      <img src="<%-recc.images[0]%>" alt="" />
+      <div>
+        <h2><%- recc.name %></h2>
+        <h3><%- recc.city %></h3>
+        <% if(recc.overall_average_rating){ %>
+        <h4><%- recc.overall_average_rating %>★</h4>
+        <% } %>
+      </div>
+    </a>
+    <% return index===2 %> <% }) %>
+  </section>
+  <% } %> <% } %>
   <h1>Explore</h1>
   <section class="organizations">
     <% organizations.forEach(function(organization) { %>

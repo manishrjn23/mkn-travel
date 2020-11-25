@@ -101,11 +101,25 @@ router.get(
 
 router.get("/bookings", ensureAuthenticated, (req, res) => {
   Booking.find({ _id: { $in: req.user.bookings } }, (err, bookings) => {
-    if(err)throw err;
-     else{ 
-       res.render('bookings',{user:req.user,bookings:bookings})
+    if (err) throw err;
+    else {
+      res.render("bookings", { user: req.user, bookings: bookings });
     }
-})
+  });
+});
+
+router.post("/bookings/:bookID", ensureAuthenticated, (req, res) => {
+  Booking.deleteOne({ id: req.params.bookID })
+    .then(() => {
+      console.log("booking cancelled");
+      ind = req.user.bookings.indexOf(req.params.bookID);
+      req.user.bookings.splice(ind, 1);
+      req.user.save();
+      res.redirect("/users/bookings");
+    })
+    .catch((err) => {
+      throw err;
+    });
 });
 
 router.post("/edit_profile", ensureAuthenticated, (req, res) => {
