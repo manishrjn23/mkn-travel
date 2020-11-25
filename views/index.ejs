@@ -1,7 +1,7 @@
 <%- include('partials/header'); %>
 <main>
 	<% if(user){ %> <% if(user.bookings.length){ %>
-	<h1>Reccomendations for You</h1>
+	<h1>Recommendations for You</h1>
 	<section class="organizations">
 		<% recommendations.some( function(reccomendation, index) { %>
 		<a class="organization" href="/organizations/info/<%- reccomendation.id%>">
