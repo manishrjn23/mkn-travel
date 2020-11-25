@@ -3,14 +3,16 @@
   <h1>Bookings</h1>
   <section class="organizations">
     <% bookings.forEach(function(booking) { %>
-    <a class="organization" href="/organization/info/<%-booking.organization.id%>">
+    <a class="organization" href="/organizations/info/<%-booking.organization._id%>">
       <img src="<%-booking.organization.images[0]%>" alt="" />
       <div>
+        <h3>&#x20B9;<%-booking.cost %></h3>
         <h2><%-booking.organization.name %></h2>
         <h3><%-booking.date1 %></h3>
         <% if(booking.date2){ %> -
         <h3><%-booking.date2 %></h3>
       <% } %> 
+      
       </div>
     </a>
     <% }) %>

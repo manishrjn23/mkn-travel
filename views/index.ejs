@@ -1,5 +1,10 @@
 <%- include('partials/header'); %>
 <main>
+  <% if(user){ %> 
+    <% if(user.bookings.length){ %> 
+    <h1>Based on your recent booking</h1>
+    <% } %> 
+  <% } %> 
   <h1>Explore</h1>
   <section class="organizations">
     <% organizations.forEach(function(organization) { %>

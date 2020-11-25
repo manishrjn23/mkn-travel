@@ -109,17 +109,17 @@ router.get("/bookings", ensureAuthenticated, (req, res) => {
 });
 
 router.post("/edit_profile", ensureAuthenticated, (req, res) => {
-  const { name, delivery_address, phone } = req.body;
+  const { name, phone } = req.body;
   user_id = req.user.id;
   User.findByIdAndUpdate(
     user_id,
-    { name: name, delivery_address: delivery_address, phone: phone },
+    { name: name, phone: phone },
     function (err, docs) {
       if (err) {
         console.log(err);
       } else {
         req.flash("success_message", "Information Updated Successfully");
-        res.redirect("/organizations/dashboard");
+        res.redirect("/");
       }
     }
   );
