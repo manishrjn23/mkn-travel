@@ -10,7 +10,7 @@ module.exports = function (passport) {
         clientID:
           "294849066146-a91te865p6mcok8893lol4aeojt9k2ou.apps.googleusercontent.com",
         clientSecret: "-fV_gvG99vD7YJIrwX2NLyHx",
-        callbackURL: "http://localhost:3000/users/auth/google/callback",
+        callbackURL: "https://mkn-travel.herokuapp.com/users/auth/google/callback",
       },
       (accessToken, refreshToken, profile, done) => {
         User.findOne({ email: profile.emails[0].value })

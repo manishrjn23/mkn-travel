@@ -123,6 +123,7 @@ router.post("/bookings/:bookID", ensureAuthenticated, (req, res) => {
       ind = req.user.bookings.indexOf(req.params.bookID);
       req.user.bookings.splice(ind, 1);
       req.user.save();
+      req.flash('success_message','Cancelled booking. Refund will be credited to your account');
       res.redirect("/users/bookings");
     })
     .catch((err) => {

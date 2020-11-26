@@ -1,6 +1,7 @@
 <%- include('partials/header'); %>
 <main>
 	<h1><%- organization.name %></h1>
+	<%- include('partials/messages'); %>
 	<section class="organization">
 		<div>
 			<h2><%- organization.city %></h2>
@@ -23,7 +24,9 @@
 	</section>
 	<% if(!(organization.field === 'market')){ %>
 	<h1>Book A Visit</h1>
+	
 	<section class="book">
+		
 		<form method="post" action="/organizations/info/<%-organization.id%>/book">
 			<div>
 				<% if (organization.field === 'hotel') { %>

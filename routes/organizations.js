@@ -111,6 +111,7 @@ router.post("/info/:id/book", ensureAuthenticated, (req, res) => {
         d2 = new Date(req.body.date2);
         nights = (d2.getTime() - d1.getTime()) / (1000 * 3600 * 24);
         if (nights <= 0) {
+          req.flash("error_message","Check out date cannot be before check in date")
           res.redirect("/organizations/info/" + req.params.id);
           return;
         }
@@ -138,6 +139,7 @@ router.post("/info/:id/book", ensureAuthenticated, (req, res) => {
         .then((booking) => {
           req.user.bookings.push(mongoose.Types.ObjectId(booking.id));
           req.user.save();
+          req.flash('success_message','Booking successful. ₹'+booking.cost+' credited from your account.' );
           res.redirect("/users/bookings");
         })
         .catch((err) => console.log(err));
