@@ -22,6 +22,7 @@ router.get("/info/:id", (req, res) => {
 //display all items
 router.get("/search", (req, res) => {
   var sortCondition = {};
+  wifi=0
   if (req.query.sort === "overall_average_rating") {
     sortCondition["overall_average_rating"] = -1;
   }
@@ -37,11 +38,18 @@ router.get("/search", (req, res) => {
   if (req.query.sort === "ascending_price") {
     sortCondition["price"] = 1;
   }
-
+  if(req.query.wifi==='wifiyes'){
+    wifi=1
+  }
+  a=(2===4?2:4);
   if (req.query.search && req.query.city) {
     const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
     const regex2 = new RegExp(searchRegularExpression(req.query.city), "gi");
-    Organizations.find({ name: regex1, city: regex2, field: req.query.filter })
+    quer={ name: regex1, city: regex2, field: req.query.filter }
+    if(wifi){
+      quer['wifi']=1
+    }
+    Organizations.find(quer)
       .sort(sortCondition)
       .exec(function (err, orgs) {
         if (err) throw err;
@@ -51,7 +59,11 @@ router.get("/search", (req, res) => {
       });
   } else if (!req.query.search && req.query.city) {
     const regex2 = new RegExp(searchRegularExpression(req.query.city), "gi");
-    Organizations.find({ field: req.query.filter, city: regex2 })
+    quer={ field: req.query.filter, city: regex2 }
+    if(wifi){
+      quer['wifi']=1
+    }
+    Organizations.find(quer)
       .sort(sortCondition)
       .exec(function (err, orgs) {
         if (err) throw err;
@@ -61,7 +73,11 @@ router.get("/search", (req, res) => {
       });
   } else if (req.query.search && !req.query.city) {
     const regex1 = new RegExp(searchRegularExpression(req.query.search), "gi");
-    Organizations.find({ field: req.query.filter, name: regex1 })
+    quer={ field: req.query.filter, name: regex1 }
+    if(wifi){
+      quer['wifi']=1
+    }
+    Organizations.find(quer)
       .sort(sortCondition)
       .exec(function (err, orgs) {
         if (err) throw err;
@@ -70,6 +86,10 @@ router.get("/search", (req, res) => {
         }
       });
   } else if (!req.query.city && !req.query.city) {
+    quer={ field: req.query.filter }
+    if(wifi){
+      quer['wifi']=1
+    }
     Organizations.find({ field: req.query.filter })
       .sort(sortCondition)
       .exec(function (err, orgs) {
@@ -176,10 +196,10 @@ router.post("/info/:id", ensureAuthenticated, (req, res) => {
             sum_val = rating.value_for_money;
             sum_staff = rating.staff_service;
           });
-          org.overall_average_rating = sum / org.ratings.length;
-          org.overall_staff_rating = sum_staff / org.ratings.length;
-          org.overall_value_rating = sum_val / org.ratings.length;
-
+          org.overall_average_rating = (sum / org.ratings.length).toFixed(2);
+          org.overall_staff_rating = (sum_staff / org.ratings.length).toFixed(2);
+          org.overall_value_rating = (sum_val / org.ratings.length).toFixed(2);
+          
           org.save();
           req.flash("success_message", "Rated successfully");
           res.redirect("/organizations/info/" + req.params.id);
@@ -189,8 +209,10 @@ router.post("/info/:id", ensureAuthenticated, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/test", (req, res) => {
-  Organizations.updateMany({}, { price: 1 }, function (err, numberAffected) {});
-});
+// router.get("/test", (req, res) => {
+//   Organizations.updateMany({}, { wifi: 1 }, function (err, numberAffected) {
+//     console.log('job done')
+//   });
+// });
 
 module.exports = router;

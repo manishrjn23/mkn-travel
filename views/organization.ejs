@@ -14,6 +14,11 @@
 			<% if(organization.field==='monument'){ %> 
 				<h2>Ticket price: &#x20B9;  <%- organization.price %> per person</h2>
 				<% } %>
+			<% if(organization.wifi){ %> 
+				<h3>Open wifi available<img src="/images/wifi.png" alt="" /></h3>
+			<% } else{ %> 
+				<h3>Open wifi not available<img src="/images/nowifi.png" alt="" height="40px" width="40px"/></h3>
+			<% } %> 
 
 
 		</div>
@@ -41,7 +46,7 @@
 				<input type="date" id="date1" name="date1" required />
 				<% } %>
 				<label for="people">Visitors</label>
-				<input type="number" id="people" name="people" required />
+				<input type="number" id="people" name="people" min='1' required />
 			</div>
 			<button type="submit">Book</button>
 		</form>

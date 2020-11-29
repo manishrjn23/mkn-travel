@@ -20,6 +20,10 @@ const OrganizationsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  wifi: {
+    type: Number,
+    default: false,
+  },
   address: {
     type: String,
     required: true,
